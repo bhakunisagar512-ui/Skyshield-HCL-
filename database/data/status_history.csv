@@ -1,0 +1,691 @@
+id,incident_id,from_status,to_status,changed_by_id,note,changed_at
+1,1,,submitted,8,Report filed,2024-01-02T18:26:45.946291+05:30
+2,1,submitted,under_review,2,Review started,2024-01-03T06:26:45.946291+05:30
+3,1,under_review,measures_pending,2,Analysis submitted,2024-01-05T10:26:45.946291+05:30
+4,1,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-01-08T10:26:45.946291+05:30
+5,2,,submitted,16,Report filed,2024-01-08T07:09:31.210084+05:30
+6,2,submitted,under_review,3,Review started,2024-01-08T17:09:31.210084+05:30
+7,2,under_review,measures_pending,3,Analysis submitted,2024-01-10T11:09:31.210084+05:30
+8,2,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-01-27T11:09:31.210084+05:30
+9,3,,submitted,13,Report filed,2024-01-13T18:00:38.211392+05:30
+10,3,submitted,under_review,2,Review started,2024-01-14T01:00:38.211392+05:30
+11,3,under_review,measures_pending,2,Analysis submitted,2024-01-16T11:00:38.211392+05:30
+12,3,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-02-14T11:00:38.211392+05:30
+13,4,,submitted,16,Report filed,2024-01-22T17:58:57.045598+05:30
+14,4,submitted,under_review,3,Review started,2024-01-24T13:58:57.045598+05:30
+15,4,under_review,measures_pending,3,Analysis submitted,2024-01-26T00:58:57.045598+05:30
+16,4,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-02-06T00:58:57.045598+05:30
+17,5,,submitted,9,Report filed,2024-01-27T09:46:18.036928+05:30
+18,5,submitted,under_review,2,Review started,2024-01-28T20:46:18.036928+05:30
+19,5,under_review,measures_pending,2,Analysis submitted,2024-01-31T20:46:18.036928+05:30
+20,5,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-02-24T20:46:18.036928+05:30
+21,6,,submitted,16,Report filed,2024-01-29T04:17:54.939172+05:30
+22,6,submitted,under_review,3,Review started,2024-01-30T14:17:54.939172+05:30
+23,6,under_review,measures_pending,3,Analysis submitted,2024-02-01T12:17:54.939172+05:30
+24,6,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-02-06T12:17:54.939172+05:30
+25,7,,submitted,9,Report filed,2024-02-02T09:40:39.946820+05:30
+26,7,submitted,under_review,4,Review started,2024-02-03T04:40:39.946820+05:30
+27,7,under_review,measures_pending,4,Analysis submitted,2024-02-06T02:40:39.946820+05:30
+28,7,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-02-24T02:40:39.946820+05:30
+29,8,,submitted,9,Report filed,2024-02-04T08:51:07.779658+05:30
+30,8,submitted,under_review,3,Review started,2024-02-05T07:51:07.779658+05:30
+31,8,under_review,measures_pending,3,Analysis submitted,2024-02-07T14:51:07.779658+05:30
+32,8,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-03-04T14:51:07.779658+05:30
+33,9,,submitted,8,Report filed,2024-02-18T10:31:26.152111+05:30
+34,9,submitted,under_review,2,Review started,2024-02-20T00:31:26.152111+05:30
+35,9,under_review,measures_pending,2,Analysis submitted,2024-02-21T07:31:26.152111+05:30
+36,9,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-03-09T07:31:26.152111+05:30
+37,10,,submitted,10,Report filed,2024-02-20T11:09:34.715624+05:30
+38,10,submitted,under_review,3,Review started,2024-02-22T10:09:34.715624+05:30
+39,10,under_review,measures_pending,3,Analysis submitted,2024-02-23T09:09:34.715624+05:30
+40,11,,submitted,8,Report filed,2024-03-02T12:11:22.940315+05:30
+41,11,submitted,under_review,3,Review started,2024-03-04T08:11:22.940315+05:30
+42,11,under_review,measures_pending,3,Analysis submitted,2024-03-06T11:11:22.940315+05:30
+43,11,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-03-24T11:11:22.940315+05:30
+44,12,,submitted,6,Report filed,2024-03-09T00:42:35.486634+05:30
+45,12,submitted,under_review,3,Review started,2024-03-10T08:42:35.486634+05:30
+46,12,under_review,measures_pending,3,Analysis submitted,2024-03-13T01:42:35.486634+05:30
+47,12,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-03-30T01:42:35.486634+05:30
+48,13,,submitted,7,Report filed,2024-03-14T14:18:29.579441+05:30
+49,13,submitted,under_review,2,Review started,2024-03-15T18:18:29.579441+05:30
+50,13,under_review,measures_pending,2,Analysis submitted,2024-03-18T07:18:29.579441+05:30
+51,13,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-04-12T07:18:29.579441+05:30
+52,14,,submitted,5,Report filed,2024-03-15T16:51:23.969475+05:30
+53,14,submitted,under_review,4,Review started,2024-03-17T06:51:23.969475+05:30
+54,14,under_review,measures_pending,4,Analysis submitted,2024-03-17T12:51:23.969475+05:30
+55,14,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-04-13T12:51:23.969475+05:30
+56,15,,submitted,14,Report filed,2024-03-16T18:17:07.269317+05:30
+57,15,submitted,under_review,3,Review started,2024-03-16T23:17:07.269317+05:30
+58,15,under_review,measures_pending,3,Analysis submitted,2024-03-18T05:17:07.269317+05:30
+59,15,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-03-29T05:17:07.269317+05:30
+60,16,,submitted,5,Report filed,2024-03-25T09:32:43.213527+05:30
+61,16,submitted,under_review,4,Review started,2024-03-27T00:32:43.213527+05:30
+62,16,under_review,measures_pending,4,Analysis submitted,2024-03-29T18:32:43.213527+05:30
+63,16,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-04-28T18:32:43.213527+05:30
+64,17,,submitted,14,Report filed,2024-04-01T02:36:22.317245+05:30
+65,17,submitted,under_review,2,Review started,2024-04-02T01:36:22.317245+05:30
+66,17,under_review,measures_pending,2,Analysis submitted,2024-04-05T01:36:22.317245+05:30
+67,17,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-04-20T01:36:22.317245+05:30
+68,18,,submitted,12,Report filed,2024-04-02T17:04:29.683989+05:30
+69,18,submitted,under_review,4,Review started,2024-04-03T05:04:29.683989+05:30
+70,18,under_review,measures_pending,4,Analysis submitted,2024-04-03T18:04:29.683989+05:30
+71,18,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-04-20T18:04:29.683989+05:30
+72,19,,submitted,14,Report filed,2024-04-06T04:22:18.305436+05:30
+73,19,submitted,under_review,2,Review started,2024-04-07T00:22:18.305436+05:30
+74,19,under_review,measures_pending,2,Analysis submitted,2024-04-08T21:22:18.305436+05:30
+75,19,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-05-04T21:22:18.305436+05:30
+76,20,,submitted,14,Report filed,2024-04-08T19:45:36.013617+05:30
+77,20,submitted,under_review,3,Review started,2024-04-10T12:45:36.013617+05:30
+78,20,under_review,measures_pending,3,Analysis submitted,2024-04-11T20:45:36.013617+05:30
+79,21,,submitted,12,Report filed,2024-04-11T22:03:20.443728+05:30
+80,21,submitted,under_review,4,Review started,2024-04-13T16:03:20.443728+05:30
+81,21,under_review,measures_pending,4,Analysis submitted,2024-04-13T22:03:20.443728+05:30
+82,21,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-04-17T22:03:20.443728+05:30
+83,22,,submitted,12,Report filed,2024-04-12T17:28:20.522712+05:30
+84,22,submitted,under_review,4,Review started,2024-04-12T21:28:20.522712+05:30
+85,22,under_review,measures_pending,4,Analysis submitted,2024-04-15T19:28:20.522712+05:30
+86,22,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-04-27T19:28:20.522712+05:30
+87,23,,submitted,11,Report filed,2024-04-16T21:17:45.984803+05:30
+88,23,submitted,under_review,3,Review started,2024-04-18T02:17:45.984803+05:30
+89,23,under_review,measures_pending,3,Analysis submitted,2024-04-19T22:17:45.984803+05:30
+90,23,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-05-13T22:17:45.984803+05:30
+91,24,,submitted,14,Report filed,2024-04-26T05:44:13.317568+05:30
+92,24,submitted,under_review,4,Review started,2024-04-26T08:44:13.317568+05:30
+93,24,under_review,measures_pending,4,Analysis submitted,2024-04-27T22:44:13.317568+05:30
+94,24,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-04-30T22:44:13.317568+05:30
+95,25,,submitted,10,Report filed,2024-04-27T23:48:28.458115+05:30
+96,25,submitted,under_review,4,Review started,2024-04-29T20:48:28.458115+05:30
+97,25,under_review,measures_pending,4,Analysis submitted,2024-05-02T14:48:28.458115+05:30
+98,25,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-05-21T14:48:28.458115+05:30
+99,26,,submitted,5,Report filed,2024-05-07T19:33:57.555477+05:30
+100,26,submitted,under_review,4,Review started,2024-05-09T02:33:57.555477+05:30
+101,26,under_review,measures_pending,4,Analysis submitted,2024-05-11T04:33:57.555477+05:30
+102,26,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-05-16T04:33:57.555477+05:30
+103,27,,submitted,6,Report filed,2024-05-15T19:10:06.215750+05:30
+104,27,submitted,under_review,3,Review started,2024-05-16T14:10:06.215750+05:30
+105,27,under_review,measures_pending,3,Analysis submitted,2024-05-17T01:10:06.215750+05:30
+106,27,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-05-31T01:10:06.215750+05:30
+107,28,,submitted,11,Report filed,2024-05-20T07:11:50.275659+05:30
+108,28,submitted,under_review,4,Review started,2024-05-20T12:11:50.275659+05:30
+109,28,under_review,measures_pending,4,Analysis submitted,2024-05-22T10:11:50.275659+05:30
+110,28,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-05-27T10:11:50.275659+05:30
+111,29,,submitted,6,Report filed,2024-06-10T06:43:11.724830+05:30
+112,29,submitted,under_review,2,Review started,2024-06-11T16:43:11.724830+05:30
+113,29,under_review,measures_pending,2,Analysis submitted,2024-06-14T15:43:11.724830+05:30
+114,29,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-06-18T15:43:11.724830+05:30
+115,30,,submitted,16,Report filed,2024-06-13T19:24:43.794884+05:30
+116,30,submitted,under_review,2,Review started,2024-06-14T15:24:43.794884+05:30
+117,30,under_review,measures_pending,2,Analysis submitted,2024-06-15T05:24:43.794884+05:30
+118,30,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-07-12T05:24:43.794884+05:30
+119,31,,submitted,8,Report filed,2024-06-21T09:32:49.172735+05:30
+120,31,submitted,under_review,2,Review started,2024-06-22T13:32:49.172735+05:30
+121,31,under_review,measures_pending,2,Analysis submitted,2024-06-25T03:32:49.172735+05:30
+122,31,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-06-30T03:32:49.172735+05:30
+123,32,,submitted,15,Report filed,2024-06-29T08:57:44.112542+05:30
+124,32,submitted,under_review,4,Review started,2024-06-30T15:57:44.112542+05:30
+125,32,under_review,measures_pending,4,Analysis submitted,2024-07-03T08:57:44.112542+05:30
+126,32,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-07-26T08:57:44.112542+05:30
+127,33,,submitted,6,Report filed,2024-07-08T00:44:47.407888+05:30
+128,33,submitted,under_review,3,Review started,2024-07-09T16:44:47.407888+05:30
+129,33,under_review,measures_pending,3,Analysis submitted,2024-07-10T19:44:47.407888+05:30
+130,33,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-07-30T19:44:47.407888+05:30
+131,34,,submitted,10,Report filed,2024-07-20T00:45:15.972412+05:30
+132,34,submitted,under_review,4,Review started,2024-07-20T10:45:15.972412+05:30
+133,34,under_review,measures_pending,4,Analysis submitted,2024-07-23T09:45:15.972412+05:30
+134,34,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-08-06T09:45:15.972412+05:30
+135,35,,submitted,12,Report filed,2024-07-28T07:38:20.602841+05:30
+136,35,submitted,under_review,4,Review started,2024-07-29T08:38:20.602841+05:30
+137,35,under_review,measures_pending,4,Analysis submitted,2024-07-31T23:38:20.602841+05:30
+138,35,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-08-28T23:38:20.602841+05:30
+139,36,,submitted,7,Report filed,2024-07-31T14:04:33.100405+05:30
+140,36,submitted,under_review,4,Review started,2024-07-31T21:04:33.100405+05:30
+141,36,under_review,measures_pending,4,Analysis submitted,2024-08-03T17:04:33.100405+05:30
+142,36,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-08-26T17:04:33.100405+05:30
+143,37,,submitted,10,Report filed,2024-08-09T16:08:51.350236+05:30
+144,37,submitted,under_review,4,Review started,2024-08-10T16:08:51.350236+05:30
+145,37,under_review,measures_pending,4,Analysis submitted,2024-08-12T23:08:51.350236+05:30
+146,37,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-08-19T23:08:51.350236+05:30
+147,38,,submitted,9,Report filed,2024-08-10T19:25:35.864366+05:30
+148,38,submitted,under_review,2,Review started,2024-08-12T00:25:35.864366+05:30
+149,38,under_review,measures_pending,2,Analysis submitted,2024-08-12T21:25:35.864366+05:30
+150,38,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-08-23T21:25:35.864366+05:30
+151,39,,submitted,7,Report filed,2024-08-11T11:01:21.610081+05:30
+152,39,submitted,under_review,4,Review started,2024-08-12T08:01:21.610081+05:30
+153,40,,submitted,8,Report filed,2024-08-13T12:37:18.315038+05:30
+154,40,submitted,under_review,3,Review started,2024-08-13T23:37:18.315038+05:30
+155,40,under_review,measures_pending,3,Analysis submitted,2024-08-16T07:37:18.315038+05:30
+156,40,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-09-10T07:37:18.315038+05:30
+157,41,,submitted,14,Report filed,2024-08-19T00:47:42.876740+05:30
+158,41,submitted,under_review,3,Review started,2024-08-20T00:47:42.876740+05:30
+159,41,under_review,measures_pending,3,Analysis submitted,2024-08-20T22:47:42.876740+05:30
+160,41,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-09-01T22:47:42.876740+05:30
+161,42,,submitted,10,Report filed,2024-08-19T06:02:32.554727+05:30
+162,42,submitted,under_review,2,Review started,2024-08-21T01:02:32.554727+05:30
+163,42,under_review,measures_pending,2,Analysis submitted,2024-08-22T10:02:32.554727+05:30
+164,42,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-09-11T10:02:32.554727+05:30
+165,43,,submitted,6,Report filed,2024-08-20T07:41:28.072487+05:30
+166,43,submitted,under_review,2,Review started,2024-08-20T17:41:28.072487+05:30
+167,43,under_review,measures_pending,2,Analysis submitted,2024-08-23T10:41:28.072487+05:30
+168,43,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-09-05T10:41:28.072487+05:30
+169,44,,submitted,13,Report filed,2024-08-20T15:19:48.405893+05:30
+170,44,submitted,under_review,3,Review started,2024-08-20T21:19:48.405893+05:30
+171,44,under_review,measures_pending,3,Analysis submitted,2024-08-21T15:19:48.405893+05:30
+172,44,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-08-25T15:19:48.405893+05:30
+173,45,,submitted,11,Report filed,2024-08-23T04:18:11.684301+05:30
+174,45,submitted,under_review,4,Review started,2024-08-25T04:18:11.684301+05:30
+175,45,under_review,measures_pending,4,Analysis submitted,2024-08-27T13:18:11.684301+05:30
+176,45,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-09-10T13:18:11.684301+05:30
+177,46,,submitted,6,Report filed,2024-08-25T07:51:17.040302+05:30
+178,46,submitted,under_review,4,Review started,2024-08-27T04:51:17.040302+05:30
+179,46,under_review,measures_pending,4,Analysis submitted,2024-08-27T14:51:17.040302+05:30
+180,46,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-09-06T14:51:17.040302+05:30
+181,47,,submitted,7,Report filed,2024-08-28T21:42:37.594649+05:30
+182,47,submitted,under_review,2,Review started,2024-08-29T13:42:37.594649+05:30
+183,47,under_review,measures_pending,2,Analysis submitted,2024-08-31T07:42:37.594649+05:30
+184,47,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-09-30T07:42:37.594649+05:30
+185,48,,submitted,16,Report filed,2024-08-29T19:04:10.052651+05:30
+186,48,submitted,under_review,3,Review started,2024-08-30T12:04:10.052651+05:30
+187,48,under_review,measures_pending,3,Analysis submitted,2024-09-01T09:04:10.052651+05:30
+188,48,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-09-28T09:04:10.052651+05:30
+189,49,,submitted,16,Report filed,2024-08-30T03:45:15.472128+05:30
+190,49,submitted,under_review,2,Review started,2024-09-01T03:45:15.472128+05:30
+191,49,under_review,measures_pending,2,Analysis submitted,2024-09-03T21:45:15.472128+05:30
+192,49,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-09-11T21:45:15.472128+05:30
+193,50,,submitted,8,Report filed,2024-08-30T11:41:53.323402+05:30
+194,50,submitted,under_review,3,Review started,2024-08-31T11:41:53.323402+05:30
+195,50,under_review,measures_pending,3,Analysis submitted,2024-09-02T01:41:53.323402+05:30
+196,50,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-09-30T01:41:53.323402+05:30
+197,51,,submitted,16,Report filed,2024-09-03T03:17:52.042127+05:30
+198,51,submitted,under_review,2,Review started,2024-09-04T00:17:52.042127+05:30
+199,51,under_review,measures_pending,2,Analysis submitted,2024-09-05T00:17:52.042127+05:30
+200,51,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-09-26T00:17:52.042127+05:30
+201,52,,submitted,10,Report filed,2024-09-07T23:59:49.430979+05:30
+202,52,submitted,under_review,2,Review started,2024-09-08T20:59:49.430979+05:30
+203,52,under_review,measures_pending,2,Analysis submitted,2024-09-11T08:59:49.430979+05:30
+204,52,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-09-25T08:59:49.430979+05:30
+205,53,,submitted,6,Report filed,2024-09-17T01:48:39.039660+05:30
+206,53,submitted,under_review,2,Review started,2024-09-19T01:48:39.039660+05:30
+207,53,under_review,measures_pending,2,Analysis submitted,2024-09-21T20:48:39.039660+05:30
+208,53,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-10-13T20:48:39.039660+05:30
+209,54,,submitted,16,Report filed,2024-10-03T15:51:10.912642+05:30
+210,54,submitted,under_review,3,Review started,2024-10-05T12:51:10.912642+05:30
+211,54,under_review,measures_pending,3,Analysis submitted,2024-10-08T07:51:10.912642+05:30
+212,54,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-10-15T07:51:10.912642+05:30
+213,55,,submitted,8,Report filed,2024-10-04T22:12:26.719101+05:30
+214,55,submitted,under_review,4,Review started,2024-10-06T13:12:26.719101+05:30
+215,55,under_review,measures_pending,4,Analysis submitted,2024-10-07T21:12:26.719101+05:30
+216,55,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-10-24T21:12:26.719101+05:30
+217,56,,submitted,11,Report filed,2024-10-06T15:52:22.820667+05:30
+218,56,submitted,under_review,4,Review started,2024-10-08T11:52:22.820667+05:30
+219,56,under_review,measures_pending,4,Analysis submitted,2024-10-10T22:52:22.820667+05:30
+220,56,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-10-25T22:52:22.820667+05:30
+221,57,,submitted,6,Report filed,2024-10-06T05:19:49.609293+05:30
+222,57,submitted,under_review,2,Review started,2024-10-07T15:19:49.609293+05:30
+223,57,under_review,measures_pending,2,Analysis submitted,2024-10-09T20:19:49.609293+05:30
+224,57,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-10-25T20:19:49.609293+05:30
+225,58,,submitted,7,Report filed,2024-10-08T21:00:15.473524+05:30
+226,58,submitted,under_review,4,Review started,2024-10-10T06:00:15.473524+05:30
+227,58,under_review,measures_pending,4,Analysis submitted,2024-10-13T03:00:15.473524+05:30
+228,58,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-10-19T03:00:15.473524+05:30
+229,59,,submitted,13,Report filed,2024-10-09T04:51:35.225858+05:30
+230,59,submitted,under_review,2,Review started,2024-10-09T14:51:35.225858+05:30
+231,59,under_review,measures_pending,2,Analysis submitted,2024-10-11T22:51:35.225858+05:30
+232,59,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-10-15T22:51:35.225858+05:30
+233,60,,submitted,13,Report filed,2024-10-09T14:08:04.297727+05:30
+234,60,submitted,under_review,3,Review started,2024-10-10T13:08:04.297727+05:30
+235,60,under_review,measures_pending,3,Analysis submitted,2024-10-10T23:08:04.297727+05:30
+236,60,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-10-14T23:08:04.297727+05:30
+237,61,,submitted,13,Report filed,2024-10-17T09:14:26.095214+05:30
+238,61,submitted,under_review,2,Review started,2024-10-19T07:14:26.095214+05:30
+239,61,under_review,measures_pending,2,Analysis submitted,2024-10-21T06:14:26.095214+05:30
+240,61,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-11-19T06:14:26.095214+05:30
+241,62,,submitted,16,Report filed,2024-10-19T14:36:47.572419+05:30
+242,62,submitted,under_review,4,Review started,2024-10-20T11:36:47.572419+05:30
+243,62,under_review,measures_pending,4,Analysis submitted,2024-10-21T17:36:47.572419+05:30
+244,62,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-11-09T17:36:47.572419+05:30
+245,63,,submitted,9,Report filed,2024-10-31T16:56:23.858121+05:30
+246,63,submitted,under_review,4,Review started,2024-11-01T07:56:23.858121+05:30
+247,63,under_review,measures_pending,4,Analysis submitted,2024-11-02T06:56:23.858121+05:30
+248,63,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-11-22T06:56:23.858121+05:30
+249,64,,submitted,12,Report filed,2024-11-10T17:42:55.555173+05:30
+250,64,submitted,under_review,2,Review started,2024-11-12T02:42:55.555173+05:30
+251,64,under_review,measures_pending,2,Analysis submitted,2024-11-13T03:42:55.555173+05:30
+252,64,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-11-27T03:42:55.555173+05:30
+253,65,,submitted,10,Report filed,2024-11-19T18:48:24.507616+05:30
+254,65,submitted,under_review,2,Review started,2024-11-20T19:48:24.507616+05:30
+255,65,under_review,measures_pending,2,Analysis submitted,2024-11-22T00:48:24.507616+05:30
+256,65,measures_pending,closed,2,All measures reviewed. Incident closed.,2024-12-04T00:48:24.507616+05:30
+257,66,,submitted,15,Report filed,2024-11-25T04:57:12.665738+05:30
+258,66,submitted,under_review,4,Review started,2024-11-26T18:57:12.665738+05:30
+259,66,under_review,measures_pending,4,Analysis submitted,2024-11-27T05:57:12.665738+05:30
+260,66,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-12-13T05:57:12.665738+05:30
+261,67,,submitted,10,Report filed,2024-11-27T17:45:47.768290+05:30
+262,67,submitted,under_review,4,Review started,2024-11-28T14:45:47.768290+05:30
+263,67,under_review,measures_pending,4,Analysis submitted,2024-11-30T03:45:47.768290+05:30
+264,67,measures_pending,closed,4,All measures reviewed. Incident closed.,2024-12-29T03:45:47.768290+05:30
+265,68,,submitted,16,Report filed,2024-11-28T13:20:38.378301+05:30
+266,68,submitted,under_review,3,Review started,2024-11-30T10:20:38.378301+05:30
+267,68,under_review,measures_pending,3,Analysis submitted,2024-12-02T20:20:38.378301+05:30
+268,68,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-12-10T20:20:38.378301+05:30
+269,69,,submitted,8,Report filed,2024-12-07T05:10:55.199777+05:30
+270,69,submitted,under_review,3,Review started,2024-12-07T10:10:55.199777+05:30
+271,69,under_review,measures_pending,3,Analysis submitted,2024-12-10T02:10:55.199777+05:30
+272,70,,submitted,7,Report filed,2024-12-20T17:22:41.554362+05:30
+273,70,submitted,under_review,3,Review started,2024-12-20T22:22:41.554362+05:30
+274,70,under_review,measures_pending,3,Analysis submitted,2024-12-21T04:22:41.554362+05:30
+275,70,measures_pending,closed,3,All measures reviewed. Incident closed.,2024-12-28T04:22:41.554362+05:30
+276,71,,submitted,12,Report filed,2024-12-22T01:02:28.679441+05:30
+277,71,submitted,under_review,2,Review started,2024-12-22T18:02:28.679441+05:30
+278,71,under_review,measures_pending,2,Analysis submitted,2024-12-24T18:02:28.679441+05:30
+279,71,measures_pending,closed,2,All measures reviewed. Incident closed.,2025-01-06T18:02:28.679441+05:30
+280,72,,submitted,16,Report filed,2024-12-24T03:43:40.970080+05:30
+281,72,submitted,under_review,4,Review started,2024-12-24T15:43:40.970080+05:30
+282,72,under_review,measures_pending,4,Analysis submitted,2024-12-27T02:43:40.970080+05:30
+283,72,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-01-04T02:43:40.970080+05:30
+284,73,,submitted,7,Report filed,2025-01-19T11:39:39.026824+05:30
+285,73,submitted,under_review,3,Review started,2025-01-20T00:39:39.026824+05:30
+286,73,under_review,measures_pending,3,Analysis submitted,2025-01-22T13:39:39.026824+05:30
+287,74,,submitted,6,Report filed,2025-01-25T03:46:16.425741+05:30
+288,74,submitted,under_review,4,Review started,2025-01-26T01:46:16.425741+05:30
+289,74,under_review,measures_pending,4,Analysis submitted,2025-01-27T16:46:16.425741+05:30
+290,74,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-02-15T16:46:16.425741+05:30
+291,75,,submitted,16,Report filed,2025-02-03T07:46:42.125819+05:30
+292,75,submitted,under_review,2,Review started,2025-02-03T17:46:42.125819+05:30
+293,75,under_review,measures_pending,2,Analysis submitted,2025-02-05T11:46:42.125819+05:30
+294,75,measures_pending,closed,2,All measures reviewed. Incident closed.,2025-03-03T11:46:42.125819+05:30
+295,76,,submitted,10,Report filed,2025-02-04T01:02:40.051673+05:30
+296,76,submitted,under_review,2,Review started,2025-02-05T09:02:40.051673+05:30
+297,76,under_review,measures_pending,2,Analysis submitted,2025-02-07T09:02:40.051673+05:30
+298,76,measures_pending,closed,2,All measures reviewed. Incident closed.,2025-02-21T09:02:40.051673+05:30
+299,77,,submitted,13,Report filed,2025-02-06T12:42:11.437758+05:30
+300,77,submitted,under_review,3,Review started,2025-02-07T09:42:11.437758+05:30
+301,77,under_review,measures_pending,3,Analysis submitted,2025-02-08T02:42:11.437758+05:30
+302,77,measures_pending,closed,3,All measures reviewed. Incident closed.,2025-02-26T02:42:11.437758+05:30
+303,78,,submitted,15,Report filed,2025-02-21T14:39:42.554853+05:30
+304,78,submitted,under_review,2,Review started,2025-02-22T06:39:42.554853+05:30
+305,78,under_review,measures_pending,2,Analysis submitted,2025-02-24T07:39:42.554853+05:30
+306,78,measures_pending,closed,2,All measures reviewed. Incident closed.,2025-03-06T07:39:42.554853+05:30
+307,79,,submitted,9,Report filed,2025-02-24T15:51:24.335447+05:30
+308,79,submitted,under_review,2,Review started,2025-02-26T05:51:24.335447+05:30
+309,79,under_review,measures_pending,2,Analysis submitted,2025-02-27T05:51:24.335447+05:30
+310,79,measures_pending,closed,2,All measures reviewed. Incident closed.,2025-03-17T05:51:24.335447+05:30
+311,80,,submitted,7,Report filed,2025-03-20T12:44:42.594900+05:30
+312,80,submitted,under_review,3,Review started,2025-03-21T12:44:42.594900+05:30
+313,81,,submitted,12,Report filed,2025-03-20T20:45:38.740896+05:30
+314,81,submitted,under_review,3,Review started,2025-03-22T04:45:38.740896+05:30
+315,81,under_review,measures_pending,3,Analysis submitted,2025-03-23T03:45:38.740896+05:30
+316,81,measures_pending,closed,3,All measures reviewed. Incident closed.,2025-04-01T03:45:38.740896+05:30
+317,82,,submitted,7,Report filed,2025-03-21T11:27:51.730108+05:30
+318,82,submitted,under_review,2,Review started,2025-03-23T11:27:51.730108+05:30
+319,82,under_review,measures_pending,2,Analysis submitted,2025-03-24T03:27:51.730108+05:30
+320,82,measures_pending,closed,2,All measures reviewed. Incident closed.,2025-04-04T03:27:51.730108+05:30
+321,83,,submitted,6,Report filed,2025-03-22T09:35:45.662940+05:30
+322,83,submitted,under_review,3,Review started,2025-03-23T23:35:45.662940+05:30
+323,83,under_review,measures_pending,3,Analysis submitted,2025-03-26T11:35:45.662940+05:30
+324,84,,submitted,9,Report filed,2025-03-29T18:21:10.323306+05:30
+325,84,submitted,under_review,4,Review started,2025-03-31T13:21:10.323306+05:30
+326,84,under_review,measures_pending,4,Analysis submitted,2025-04-02T17:21:10.323306+05:30
+327,84,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-04-17T17:21:10.323306+05:30
+328,85,,submitted,5,Report filed,2025-04-03T01:10:12.834846+05:30
+329,85,submitted,under_review,4,Review started,2025-04-03T21:10:12.834846+05:30
+330,85,under_review,measures_pending,4,Analysis submitted,2025-04-06T19:10:12.834846+05:30
+331,85,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-04-20T19:10:12.834846+05:30
+332,86,,submitted,13,Report filed,2025-04-07T07:24:29.230849+05:30
+333,86,submitted,under_review,4,Review started,2025-04-09T05:24:29.230849+05:30
+334,86,under_review,measures_pending,4,Analysis submitted,2025-04-10T16:24:29.230849+05:30
+335,86,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-04-21T16:24:29.230849+05:30
+336,87,,submitted,7,Report filed,2025-04-22T15:03:38.958753+05:30
+337,87,submitted,under_review,2,Review started,2025-04-23T10:03:38.958753+05:30
+338,87,under_review,measures_pending,2,Analysis submitted,2025-04-24T10:03:38.958753+05:30
+339,87,measures_pending,closed,2,All measures reviewed. Incident closed.,2025-05-06T10:03:38.958753+05:30
+340,88,,submitted,7,Report filed,2025-04-28T04:35:52.066888+05:30
+341,88,submitted,under_review,2,Review started,2025-04-29T06:35:52.066888+05:30
+342,88,under_review,measures_pending,2,Analysis submitted,2025-04-29T15:35:52.066888+05:30
+343,88,measures_pending,closed,2,All measures reviewed. Incident closed.,2025-05-15T15:35:52.066888+05:30
+344,89,,submitted,14,Report filed,2025-05-07T06:02:35.212583+05:30
+345,89,submitted,under_review,4,Review started,2025-05-09T01:02:35.212583+05:30
+346,89,under_review,measures_pending,4,Analysis submitted,2025-05-09T06:02:35.212583+05:30
+347,89,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-05-15T06:02:35.212583+05:30
+348,90,,submitted,15,Report filed,2025-05-13T14:40:12.448689+05:30
+349,90,submitted,under_review,4,Review started,2025-05-15T11:40:12.448689+05:30
+350,90,under_review,measures_pending,4,Analysis submitted,2025-05-16T10:40:12.448689+05:30
+351,91,,submitted,15,Report filed,2025-05-15T10:37:58.334786+05:30
+352,91,submitted,under_review,4,Review started,2025-05-17T05:37:58.334786+05:30
+353,91,under_review,measures_pending,4,Analysis submitted,2025-05-19T08:37:58.334786+05:30
+354,91,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-05-22T08:37:58.334786+05:30
+355,92,,submitted,14,Report filed,2025-05-26T15:07:08.772160+05:30
+356,92,submitted,under_review,3,Review started,2025-05-28T00:07:08.772160+05:30
+357,92,under_review,measures_pending,3,Analysis submitted,2025-05-30T13:07:08.772160+05:30
+358,93,,submitted,8,Report filed,2025-06-12T01:48:18.776342+05:30
+359,93,submitted,under_review,4,Review started,2025-06-12T21:48:18.776342+05:30
+360,93,under_review,measures_pending,4,Analysis submitted,2025-06-13T18:48:18.776342+05:30
+361,93,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-06-30T18:48:18.776342+05:30
+362,94,,submitted,14,Report filed,2025-06-16T18:16:28.478967+05:30
+363,94,submitted,under_review,2,Review started,2025-06-18T05:16:28.478967+05:30
+364,94,under_review,measures_pending,2,Analysis submitted,2025-06-19T17:16:28.478967+05:30
+365,95,,submitted,7,Report filed,2025-06-20T23:38:03.041763+05:30
+366,95,submitted,under_review,4,Review started,2025-06-22T13:38:03.041763+05:30
+367,95,under_review,measures_pending,4,Analysis submitted,2025-06-22T19:38:03.041763+05:30
+368,96,,submitted,10,Report filed,2025-06-29T21:57:56.680412+05:30
+369,96,submitted,under_review,4,Review started,2025-07-01T02:57:56.680412+05:30
+370,96,under_review,measures_pending,4,Analysis submitted,2025-07-02T11:57:56.680412+05:30
+371,96,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-07-30T11:57:56.680412+05:30
+372,97,,submitted,14,Report filed,2025-07-11T09:25:42.085935+05:30
+373,97,submitted,under_review,4,Review started,2025-07-12T12:25:42.085935+05:30
+374,97,under_review,measures_pending,4,Analysis submitted,2025-07-13T18:25:42.085935+05:30
+375,97,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-07-29T18:25:42.085935+05:30
+376,98,,submitted,16,Report filed,2025-07-12T17:44:01.534741+05:30
+377,98,submitted,under_review,3,Review started,2025-07-14T10:44:01.534741+05:30
+378,98,under_review,measures_pending,3,Analysis submitted,2025-07-17T08:44:01.534741+05:30
+379,99,,submitted,14,Report filed,2025-07-18T10:07:17.724525+05:30
+380,99,submitted,under_review,3,Review started,2025-07-19T20:07:17.724525+05:30
+381,99,under_review,measures_pending,3,Analysis submitted,2025-07-20T13:07:17.724525+05:30
+382,99,measures_pending,closed,3,All measures reviewed. Incident closed.,2025-08-09T13:07:17.724525+05:30
+383,100,,submitted,13,Report filed,2025-07-20T09:52:13.966054+05:30
+384,100,submitted,under_review,3,Review started,2025-07-21T09:52:13.966054+05:30
+385,100,under_review,measures_pending,3,Analysis submitted,2025-07-22T16:52:13.966054+05:30
+386,100,measures_pending,closed,3,All measures reviewed. Incident closed.,2025-08-12T16:52:13.966054+05:30
+387,101,,submitted,13,Report filed,2025-07-22T02:37:09.129249+05:30
+388,101,submitted,under_review,4,Review started,2025-07-22T15:37:09.129249+05:30
+389,101,under_review,measures_pending,4,Analysis submitted,2025-07-25T05:37:09.129249+05:30
+390,101,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-07-31T05:37:09.129249+05:30
+391,102,,submitted,7,Report filed,2025-07-22T18:42:51.482958+05:30
+392,102,submitted,under_review,2,Review started,2025-07-24T02:42:51.482958+05:30
+393,102,under_review,measures_pending,2,Analysis submitted,2025-07-24T07:42:51.482958+05:30
+394,103,,submitted,11,Report filed,2025-07-28T09:13:18.480134+05:30
+395,103,submitted,under_review,4,Review started,2025-07-28T20:13:18.480134+05:30
+396,103,under_review,measures_pending,4,Analysis submitted,2025-07-29T21:13:18.480134+05:30
+397,103,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-08-21T21:13:18.480134+05:30
+398,104,,submitted,12,Report filed,2025-08-02T10:02:19.578056+05:30
+399,104,submitted,under_review,3,Review started,2025-08-03T21:02:19.578056+05:30
+400,104,under_review,measures_pending,3,Analysis submitted,2025-08-04T11:02:19.578056+05:30
+401,104,measures_pending,closed,3,All measures reviewed. Incident closed.,2025-08-10T11:02:19.578056+05:30
+402,105,,submitted,9,Report filed,2025-08-04T12:32:46.845462+05:30
+403,105,submitted,under_review,2,Review started,2025-08-05T09:32:46.845462+05:30
+404,105,under_review,measures_pending,2,Analysis submitted,2025-08-05T14:32:46.845462+05:30
+405,105,measures_pending,closed,2,All measures reviewed. Incident closed.,2025-08-08T14:32:46.845462+05:30
+406,106,,submitted,9,Report filed,2025-08-09T08:33:01.899891+05:30
+407,106,submitted,under_review,4,Review started,2025-08-10T14:33:01.899891+05:30
+408,106,under_review,measures_pending,4,Analysis submitted,2025-08-12T04:33:01.899891+05:30
+409,106,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-09-06T04:33:01.899891+05:30
+410,107,,submitted,16,Report filed,2025-08-14T04:09:32.648260+05:30
+411,107,submitted,under_review,3,Review started,2025-08-14T21:09:32.648260+05:30
+412,107,under_review,measures_pending,3,Analysis submitted,2025-08-15T05:09:32.648260+05:30
+413,107,measures_pending,closed,3,All measures reviewed. Incident closed.,2025-08-24T05:09:32.648260+05:30
+414,108,,submitted,7,Report filed,2025-08-24T16:32:54.734628+05:30
+415,108,submitted,under_review,4,Review started,2025-08-25T15:32:54.734628+05:30
+416,108,under_review,measures_pending,4,Analysis submitted,2025-08-26T02:32:54.734628+05:30
+417,108,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-08-30T02:32:54.734628+05:30
+418,109,,submitted,12,Report filed,2025-08-30T16:54:54.681069+05:30
+419,109,submitted,under_review,4,Review started,2025-08-31T18:54:54.681069+05:30
+420,109,under_review,measures_pending,4,Analysis submitted,2025-09-01T21:54:54.681069+05:30
+421,109,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-09-04T21:54:54.681069+05:30
+422,110,,submitted,15,Report filed,2025-09-07T22:38:31.606968+05:30
+423,110,submitted,under_review,2,Review started,2025-09-09T05:38:31.606968+05:30
+424,110,under_review,measures_pending,2,Analysis submitted,2025-09-09T16:38:31.606968+05:30
+425,111,,submitted,10,Report filed,2025-09-12T09:40:41.621627+05:30
+426,111,submitted,under_review,3,Review started,2025-09-13T10:40:41.621627+05:30
+427,111,under_review,measures_pending,3,Analysis submitted,2025-09-15T18:40:41.621627+05:30
+428,111,measures_pending,closed,3,All measures reviewed. Incident closed.,2025-10-12T18:40:41.621627+05:30
+429,112,,submitted,14,Report filed,2025-09-13T10:51:04.228940+05:30
+430,112,submitted,under_review,2,Review started,2025-09-15T10:51:04.228940+05:30
+431,112,under_review,measures_pending,2,Analysis submitted,2025-09-17T07:51:04.228940+05:30
+432,112,measures_pending,closed,2,All measures reviewed. Incident closed.,2025-10-15T07:51:04.228940+05:30
+433,113,,submitted,7,Report filed,2025-09-27T21:07:10.388380+05:30
+434,113,submitted,under_review,4,Review started,2025-09-28T02:07:10.388380+05:30
+435,113,under_review,measures_pending,4,Analysis submitted,2025-09-30T09:07:10.388380+05:30
+436,113,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-10-11T09:07:10.388380+05:30
+437,114,,submitted,7,Report filed,2025-10-03T23:35:15.147342+05:30
+438,114,submitted,under_review,2,Review started,2025-10-04T08:35:15.147342+05:30
+439,114,under_review,measures_pending,2,Analysis submitted,2025-10-04T18:35:15.147342+05:30
+440,114,measures_pending,closed,2,All measures reviewed. Incident closed.,2025-10-14T18:35:15.147342+05:30
+441,115,,submitted,9,Report filed,2025-10-04T06:38:57.131333+05:30
+442,115,submitted,under_review,3,Review started,2025-10-04T22:38:57.131333+05:30
+443,115,under_review,measures_pending,3,Analysis submitted,2025-10-07T02:38:57.131333+05:30
+444,116,,submitted,14,Report filed,2025-10-13T04:48:32.200995+05:30
+445,116,submitted,under_review,3,Review started,2025-10-14T20:48:32.200995+05:30
+446,116,under_review,measures_pending,3,Analysis submitted,2025-10-16T18:48:32.200995+05:30
+447,116,measures_pending,closed,3,All measures reviewed. Incident closed.,2025-11-02T18:48:32.200995+05:30
+448,117,,submitted,7,Report filed,2025-10-23T02:17:13.248312+05:30
+449,117,submitted,under_review,3,Review started,2025-10-25T01:17:13.248312+05:30
+450,117,under_review,measures_pending,3,Analysis submitted,2025-10-27T04:17:13.248312+05:30
+451,117,measures_pending,closed,3,All measures reviewed. Incident closed.,2025-11-04T04:17:13.248312+05:30
+452,118,,submitted,16,Report filed,2025-10-26T07:39:38.522314+05:30
+453,118,submitted,under_review,4,Review started,2025-10-28T01:39:38.522314+05:30
+454,118,under_review,measures_pending,4,Analysis submitted,2025-10-28T11:39:38.522314+05:30
+455,118,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-11-06T11:39:38.522314+05:30
+456,119,,submitted,11,Report filed,2025-10-31T19:23:20.623627+05:30
+457,119,submitted,under_review,2,Review started,2025-11-01T18:23:20.623627+05:30
+458,119,under_review,measures_pending,2,Analysis submitted,2025-11-02T17:23:20.623627+05:30
+459,119,measures_pending,closed,2,All measures reviewed. Incident closed.,2025-11-10T17:23:20.623627+05:30
+460,120,,submitted,7,Report filed,2025-11-04T15:51:51.265135+05:30
+461,120,submitted,under_review,4,Review started,2025-11-06T07:51:51.265135+05:30
+462,120,under_review,measures_pending,4,Analysis submitted,2025-11-08T01:51:51.265135+05:30
+463,120,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-11-21T01:51:51.265135+05:30
+464,121,,submitted,11,Report filed,2025-11-04T19:55:15.344566+05:30
+465,121,submitted,under_review,3,Review started,2025-11-06T06:55:15.344566+05:30
+466,121,under_review,measures_pending,3,Analysis submitted,2025-11-08T07:55:15.344566+05:30
+467,121,measures_pending,closed,3,All measures reviewed. Incident closed.,2025-11-15T07:55:15.344566+05:30
+468,122,,submitted,7,Report filed,2025-11-04T21:23:38.162092+05:30
+469,122,submitted,under_review,3,Review started,2025-11-06T18:23:38.162092+05:30
+470,122,under_review,measures_pending,3,Analysis submitted,2025-11-09T11:23:38.162092+05:30
+471,122,measures_pending,closed,3,All measures reviewed. Incident closed.,2025-11-27T11:23:38.162092+05:30
+472,123,,submitted,12,Report filed,2025-11-06T19:41:42.115653+05:30
+473,123,submitted,under_review,3,Review started,2025-11-07T16:41:42.115653+05:30
+474,123,under_review,measures_pending,3,Analysis submitted,2025-11-08T23:41:42.115653+05:30
+475,123,measures_pending,closed,3,All measures reviewed. Incident closed.,2025-11-27T23:41:42.115653+05:30
+476,124,,submitted,5,Report filed,2025-11-13T20:22:25.792784+05:30
+477,124,submitted,under_review,4,Review started,2025-11-14T11:22:25.792784+05:30
+478,124,under_review,measures_pending,4,Analysis submitted,2025-11-16T08:22:25.792784+05:30
+479,124,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-11-25T08:22:25.792784+05:30
+480,125,,submitted,7,Report filed,2025-11-15T22:55:11.049501+05:30
+481,125,submitted,under_review,4,Review started,2025-11-17T16:55:11.049501+05:30
+482,125,under_review,measures_pending,4,Analysis submitted,2025-11-20T05:55:11.049501+05:30
+483,125,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-12-12T05:55:11.049501+05:30
+484,126,,submitted,9,Report filed,2025-11-15T18:04:51.233919+05:30
+485,126,submitted,under_review,4,Review started,2025-11-16T22:04:51.233919+05:30
+486,126,under_review,measures_pending,4,Analysis submitted,2025-11-18T08:04:51.233919+05:30
+487,126,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-12-10T08:04:51.233919+05:30
+488,127,,submitted,12,Report filed,2025-11-21T14:22:50.467255+05:30
+489,127,submitted,under_review,4,Review started,2025-11-23T04:22:50.467255+05:30
+490,127,under_review,measures_pending,4,Analysis submitted,2025-11-25T17:22:50.467255+05:30
+491,127,measures_pending,closed,4,All measures reviewed. Incident closed.,2025-12-04T17:22:50.467255+05:30
+492,128,,submitted,8,Report filed,2025-12-05T20:22:43.247151+05:30
+493,128,submitted,under_review,3,Review started,2025-12-07T00:22:43.247151+05:30
+494,128,under_review,measures_pending,3,Analysis submitted,2025-12-07T23:22:43.247151+05:30
+495,128,measures_pending,closed,3,All measures reviewed. Incident closed.,2025-12-19T23:22:43.247151+05:30
+496,129,,submitted,16,Report filed,2025-12-13T17:25:44.588290+05:30
+497,129,submitted,under_review,3,Review started,2025-12-15T15:25:44.588290+05:30
+498,129,under_review,measures_pending,3,Analysis submitted,2025-12-16T05:25:44.588290+05:30
+499,129,measures_pending,closed,3,All measures reviewed. Incident closed.,2025-12-23T05:25:44.588290+05:30
+500,130,,submitted,6,Report filed,2025-12-18T17:00:14.117801+05:30
+501,130,submitted,under_review,3,Review started,2025-12-19T11:00:14.117801+05:30
+502,130,under_review,measures_pending,3,Analysis submitted,2025-12-20T07:00:14.117801+05:30
+503,130,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-01-11T07:00:14.117801+05:30
+504,131,,submitted,9,Report filed,2025-12-22T05:21:21.528015+05:30
+505,131,submitted,under_review,4,Review started,2025-12-22T21:21:21.528015+05:30
+506,131,under_review,measures_pending,4,Analysis submitted,2025-12-25T01:21:21.528015+05:30
+507,131,measures_pending,closed,4,All measures reviewed. Incident closed.,2026-01-18T01:21:21.528015+05:30
+508,132,,submitted,5,Report filed,2026-01-05T09:00:04.022649+05:30
+509,132,submitted,under_review,2,Review started,2026-01-07T06:00:04.022649+05:30
+510,132,under_review,measures_pending,2,Analysis submitted,2026-01-09T19:00:04.022649+05:30
+511,132,measures_pending,closed,2,All measures reviewed. Incident closed.,2026-01-23T19:00:04.022649+05:30
+512,133,,submitted,12,Report filed,2026-01-11T16:29:04.498040+05:30
+513,133,submitted,under_review,2,Review started,2026-01-13T09:29:04.498040+05:30
+514,133,under_review,measures_pending,2,Analysis submitted,2026-01-15T15:29:04.498040+05:30
+515,133,measures_pending,closed,2,All measures reviewed. Incident closed.,2026-01-23T15:29:04.498040+05:30
+516,134,,submitted,10,Report filed,2026-01-29T11:25:59.365339+05:30
+517,134,submitted,under_review,2,Review started,2026-01-31T05:25:59.365339+05:30
+518,134,under_review,measures_pending,2,Analysis submitted,2026-01-31T20:25:59.365339+05:30
+519,134,measures_pending,closed,2,All measures reviewed. Incident closed.,2026-02-14T20:25:59.365339+05:30
+520,135,,submitted,6,Report filed,2026-02-06T16:44:34.498413+05:30
+521,135,submitted,under_review,4,Review started,2026-02-08T03:44:34.498413+05:30
+522,135,under_review,measures_pending,4,Analysis submitted,2026-02-10T17:44:34.498413+05:30
+523,135,measures_pending,closed,4,All measures reviewed. Incident closed.,2026-03-06T17:44:34.498413+05:30
+524,136,,submitted,6,Report filed,2026-02-07T10:01:29.754789+05:30
+525,136,submitted,under_review,3,Review started,2026-02-07T22:01:29.754789+05:30
+526,136,under_review,measures_pending,3,Analysis submitted,2026-02-10T01:01:29.754789+05:30
+527,136,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-03-02T01:01:29.754789+05:30
+528,137,,submitted,8,Report filed,2026-02-07T10:03:31.698766+05:30
+529,137,submitted,under_review,2,Review started,2026-02-09T03:03:31.698766+05:30
+530,138,,submitted,16,Report filed,2026-02-14T05:15:46.331219+05:30
+531,138,submitted,under_review,2,Review started,2026-02-14T17:15:46.331219+05:30
+532,138,under_review,measures_pending,2,Analysis submitted,2026-02-15T00:15:46.331219+05:30
+533,139,,submitted,12,Report filed,2026-03-12T03:48:38.499832+05:30
+534,139,submitted,under_review,3,Review started,2026-03-12T19:48:38.499832+05:30
+535,139,under_review,measures_pending,3,Analysis submitted,2026-03-14T12:48:38.499832+05:30
+536,139,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-04-05T12:48:38.499832+05:30
+537,140,,submitted,16,Report filed,2026-03-14T13:01:22.115634+05:30
+538,140,submitted,under_review,2,Review started,2026-03-14T23:01:22.115634+05:30
+539,140,under_review,measures_pending,2,Analysis submitted,2026-03-17T00:01:22.115634+05:30
+540,140,measures_pending,closed,2,All measures reviewed. Incident closed.,2026-03-29T00:01:22.115634+05:30
+541,141,,submitted,11,Report filed,2026-03-17T12:58:39.663460+05:30
+542,141,submitted,under_review,2,Review started,2026-03-18T13:58:39.663460+05:30
+543,141,under_review,measures_pending,2,Analysis submitted,2026-03-20T15:58:39.663460+05:30
+544,141,measures_pending,closed,2,All measures reviewed. Incident closed.,2026-03-28T15:58:39.663460+05:30
+545,142,,submitted,6,Report filed,2026-03-28T16:45:27.956369+05:30
+546,142,submitted,under_review,2,Review started,2026-03-29T07:45:27.956369+05:30
+547,142,under_review,measures_pending,2,Analysis submitted,2026-04-01T05:45:27.956369+05:30
+548,142,measures_pending,closed,2,All measures reviewed. Incident closed.,2026-04-24T05:45:27.956369+05:30
+549,143,,submitted,14,Report filed,2026-03-31T18:06:17.460748+05:30
+550,143,submitted,under_review,4,Review started,2026-04-01T14:06:17.460748+05:30
+551,143,under_review,measures_pending,4,Analysis submitted,2026-04-02T17:06:17.460748+05:30
+552,143,measures_pending,closed,4,All measures reviewed. Incident closed.,2026-04-10T17:06:17.460748+05:30
+553,144,,submitted,12,Report filed,2026-04-06T06:29:11.967304+05:30
+554,144,submitted,under_review,4,Review started,2026-04-07T14:29:11.967304+05:30
+555,144,under_review,measures_pending,4,Analysis submitted,2026-04-07T23:29:11.967304+05:30
+556,144,measures_pending,closed,4,All measures reviewed. Incident closed.,2026-04-14T23:29:11.967304+05:30
+557,145,,submitted,10,Report filed,2026-04-14T03:55:29.077711+05:30
+558,145,submitted,under_review,3,Review started,2026-04-15T16:55:29.077711+05:30
+559,145,under_review,measures_pending,3,Analysis submitted,2026-04-16T07:55:29.077711+05:30
+560,145,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-04-25T07:55:29.077711+05:30
+561,146,,submitted,8,Report filed,2026-04-28T03:59:39.484668+05:30
+562,146,submitted,under_review,2,Review started,2026-04-28T21:59:39.484668+05:30
+563,146,under_review,measures_pending,2,Analysis submitted,2026-04-30T15:59:39.484668+05:30
+564,146,measures_pending,closed,2,All measures reviewed. Incident closed.,2026-05-23T15:59:39.484668+05:30
+565,147,,submitted,9,Report filed,2026-04-30T00:03:36.658479+05:30
+566,147,submitted,under_review,3,Review started,2026-04-30T05:03:36.658479+05:30
+567,147,under_review,measures_pending,3,Analysis submitted,2026-05-01T22:03:36.658479+05:30
+568,147,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-05-13T22:03:36.658479+05:30
+569,148,,submitted,7,Report filed,2026-05-01T03:22:26.988907+05:30
+570,148,submitted,under_review,3,Review started,2026-05-02T00:22:26.988907+05:30
+571,148,under_review,measures_pending,3,Analysis submitted,2026-05-04T02:22:26.988907+05:30
+572,148,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-05-11T02:22:26.988907+05:30
+573,149,,submitted,7,Report filed,2026-05-03T02:12:48.008455+05:30
+574,149,submitted,under_review,3,Review started,2026-05-04T17:12:48.008455+05:30
+575,149,under_review,measures_pending,3,Analysis submitted,2026-05-06T17:12:48.008455+05:30
+576,149,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-05-20T17:12:48.008455+05:30
+577,150,,submitted,13,Report filed,2026-05-23T22:45:42.548510+05:30
+578,150,submitted,under_review,3,Review started,2026-05-25T07:45:42.548510+05:30
+579,150,under_review,measures_pending,3,Analysis submitted,2026-05-26T01:45:42.548510+05:30
+580,150,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-06-10T01:45:42.548510+05:30
+581,151,,submitted,15,Report filed,2026-05-26T03:52:16.577988+05:30
+582,151,submitted,under_review,3,Review started,2026-05-27T13:52:16.577988+05:30
+583,151,under_review,measures_pending,3,Analysis submitted,2026-05-29T04:52:16.577988+05:30
+584,152,,submitted,13,Report filed,2026-06-07T00:26:22.214381+05:30
+585,152,submitted,under_review,3,Review started,2026-06-08T23:26:22.214381+05:30
+586,152,under_review,measures_pending,3,Analysis submitted,2026-06-10T00:26:22.214381+05:30
+587,152,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-06-28T00:26:22.214381+05:30
+588,153,,submitted,6,Report filed,2026-06-11T10:42:27.698173+05:30
+589,153,submitted,under_review,4,Review started,2026-06-12T08:42:27.698173+05:30
+590,153,under_review,measures_pending,4,Analysis submitted,2026-06-12T16:42:27.698173+05:30
+591,153,measures_pending,closed,4,All measures reviewed. Incident closed.,2026-06-29T16:42:27.698173+05:30
+592,154,,submitted,9,Report filed,2026-06-23T21:23:24.757475+05:30
+593,154,submitted,under_review,4,Review started,2026-06-25T05:23:24.757475+05:30
+594,154,under_review,measures_pending,4,Analysis submitted,2026-06-27T15:23:24.757475+05:30
+595,154,measures_pending,closed,4,All measures reviewed. Incident closed.,2026-07-06T15:23:24.757475+05:30
+596,155,,submitted,15,Report filed,2026-06-25T06:17:43.002396+05:30
+597,155,submitted,under_review,3,Review started,2026-06-26T02:17:43.002396+05:30
+598,155,under_review,measures_pending,3,Analysis submitted,2026-06-27T02:17:43.002396+05:30
+599,155,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-07-08T02:17:43.002396+05:30
+600,156,,submitted,6,Report filed,2026-06-26T17:42:58.686661+05:30
+601,156,submitted,under_review,2,Review started,2026-06-28T04:42:58.686661+05:30
+602,156,under_review,measures_pending,2,Analysis submitted,2026-07-01T03:42:58.686661+05:30
+603,156,measures_pending,closed,2,All measures reviewed. Incident closed.,2026-07-12T03:42:58.686661+05:30
+604,157,,submitted,9,Report filed,2026-07-06T02:17:56.666676+05:30
+605,157,submitted,under_review,3,Review started,2026-07-07T23:17:56.666676+05:30
+606,157,under_review,measures_pending,3,Analysis submitted,2026-07-08T18:17:56.666676+05:30
+607,158,,submitted,5,Report filed,2026-07-07T18:39:31.024129+05:30
+608,158,submitted,under_review,3,Review started,2026-07-08T16:39:31.024129+05:30
+609,158,under_review,measures_pending,3,Analysis submitted,2026-07-09T06:39:31.024129+05:30
+610,158,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-07-15T06:39:31.024129+05:30
+611,159,,submitted,5,Report filed,2026-07-11T19:02:42.986231+05:30
+612,159,submitted,under_review,3,Review started,2026-07-13T16:02:42.986231+05:30
+613,159,under_review,measures_pending,3,Analysis submitted,2026-07-16T11:02:42.986231+05:30
+614,159,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-07-22T11:02:42.986231+05:30
+615,160,,submitted,13,Report filed,2026-07-11T11:02:46.480919+05:30
+616,160,submitted,under_review,2,Review started,2026-07-12T19:02:46.480919+05:30
+617,160,under_review,measures_pending,2,Analysis submitted,2026-07-14T20:02:46.480919+05:30
+618,160,measures_pending,closed,2,All measures reviewed. Incident closed.,2026-08-05T20:02:46.480919+05:30
+619,161,,submitted,16,Report filed,2026-07-13T18:31:20.913219+05:30
+620,161,submitted,under_review,2,Review started,2026-07-15T07:31:20.913219+05:30
+621,161,under_review,measures_pending,2,Analysis submitted,2026-07-17T19:31:20.913219+05:30
+622,161,measures_pending,closed,2,All measures reviewed. Incident closed.,2026-07-21T19:31:20.913219+05:30
+623,162,,submitted,10,Report filed,2026-07-13T21:30:52.681729+05:30
+624,162,submitted,under_review,4,Review started,2026-07-14T06:30:52.681729+05:30
+625,162,under_review,measures_pending,4,Analysis submitted,2026-07-16T12:30:52.681729+05:30
+626,162,measures_pending,closed,4,All measures reviewed. Incident closed.,2026-07-30T12:30:52.681729+05:30
+627,163,,submitted,12,Report filed,2026-07-29T02:27:21.168808+05:30
+628,163,submitted,under_review,3,Review started,2026-07-30T23:27:21.168808+05:30
+629,163,under_review,measures_pending,3,Analysis submitted,2026-07-31T19:27:21.168808+05:30
+630,163,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-08-14T19:27:21.168808+05:30
+631,164,,submitted,5,Report filed,2026-08-03T16:00:21.743275+05:30
+632,164,submitted,under_review,3,Review started,2026-08-04T20:00:21.743275+05:30
+633,164,under_review,measures_pending,3,Analysis submitted,2026-08-05T12:00:21.743275+05:30
+634,164,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-08-22T12:00:21.743275+05:30
+635,165,,submitted,12,Report filed,2026-08-11T21:54:34.302725+05:30
+636,165,submitted,under_review,4,Review started,2026-08-13T13:54:34.302725+05:30
+637,165,under_review,measures_pending,4,Analysis submitted,2026-08-16T07:54:34.302725+05:30
+638,165,measures_pending,closed,4,All measures reviewed. Incident closed.,2026-08-28T07:54:34.302725+05:30
+639,166,,submitted,12,Report filed,2026-08-19T12:58:45.198661+05:30
+640,166,submitted,under_review,4,Review started,2026-08-21T01:58:45.198661+05:30
+641,166,under_review,measures_pending,4,Analysis submitted,2026-08-22T18:58:45.198661+05:30
+642,166,measures_pending,closed,4,All measures reviewed. Incident closed.,2026-08-26T18:58:45.198661+05:30
+643,167,,submitted,12,Report filed,2026-08-21T15:28:19.620646+05:30
+644,167,submitted,under_review,2,Review started,2026-08-23T08:28:19.620646+05:30
+645,168,,submitted,6,Report filed,2026-09-05T15:01:51.768639+05:30
+646,168,submitted,under_review,3,Review started,2026-09-06T14:01:51.768639+05:30
+647,168,under_review,measures_pending,3,Analysis submitted,2026-09-08T15:01:51.768639+05:30
+648,168,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-10-05T15:01:51.768639+05:30
+649,169,,submitted,6,Report filed,2026-09-12T00:05:22.981444+05:30
+650,169,submitted,under_review,3,Review started,2026-09-13T01:05:22.981444+05:30
+651,169,under_review,measures_pending,3,Analysis submitted,2026-09-14T12:05:22.981444+05:30
+652,169,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-09-21T12:05:22.981444+05:30
+653,170,,submitted,16,Report filed,2026-09-13T08:53:41.588223+05:30
+654,170,submitted,under_review,2,Review started,2026-09-14T20:53:41.588223+05:30
+655,170,under_review,measures_pending,2,Analysis submitted,2026-09-17T08:53:41.588223+05:30
+656,170,measures_pending,closed,2,All measures reviewed. Incident closed.,2026-10-12T08:53:41.588223+05:30
+657,171,,submitted,16,Report filed,2026-09-20T04:53:57.782773+05:30
+658,171,submitted,under_review,4,Review started,2026-09-22T00:53:57.782773+05:30
+659,171,under_review,measures_pending,4,Analysis submitted,2026-09-25T00:53:57.782773+05:30
+660,172,,submitted,12,Report filed,2026-09-24T14:56:34.757618+05:30
+661,172,submitted,under_review,4,Review started,2026-09-26T00:56:34.757618+05:30
+662,172,under_review,measures_pending,4,Analysis submitted,2026-09-28T23:56:34.757618+05:30
+663,173,,submitted,16,Report filed,2026-10-02T00:23:25.185057+05:30
+664,173,submitted,under_review,2,Review started,2026-10-03T10:23:25.185057+05:30
+665,173,under_review,measures_pending,2,Analysis submitted,2026-10-06T00:23:25.185057+05:30
+666,174,,submitted,6,Report filed,2026-10-05T13:12:07.934196+05:30
+667,174,submitted,under_review,3,Review started,2026-10-06T16:12:07.934196+05:30
+668,174,under_review,measures_pending,3,Analysis submitted,2026-10-07T01:12:07.934196+05:30
+669,175,,submitted,12,Report filed,2026-10-19T19:26:23.346672+05:30
+670,175,submitted,under_review,3,Review started,2026-10-19T22:26:23.346672+05:30
+671,175,under_review,measures_pending,3,Analysis submitted,2026-10-22T06:26:23.346672+05:30
+672,175,measures_pending,closed,3,All measures reviewed. Incident closed.,2026-11-14T06:26:23.346672+05:30
+673,176,,submitted,13,Report filed,2026-10-21T14:54:15.113228+05:30
+674,176,submitted,under_review,4,Review started,2026-10-23T02:54:15.113228+05:30
+675,176,under_review,measures_pending,4,Analysis submitted,2026-10-23T14:54:15.113228+05:30
+676,176,measures_pending,closed,4,All measures reviewed. Incident closed.,2026-11-04T14:54:15.113228+05:30
+677,177,,submitted,14,Report filed,2026-11-07T23:21:35.413489+05:30
+678,177,submitted,under_review,4,Review started,2026-11-08T01:21:35.413489+05:30
+679,178,,submitted,7,Report filed,2026-11-14T03:28:21.897315+05:30
+680,178,submitted,under_review,4,Review started,2026-11-15T17:28:21.897315+05:30
+681,178,under_review,measures_pending,4,Analysis submitted,2026-11-16T19:28:21.897315+05:30
+682,179,,submitted,8,Report filed,2026-11-14T16:01:33.833513+05:30
+683,179,submitted,under_review,2,Review started,2026-11-16T10:01:33.833513+05:30
+684,179,under_review,measures_pending,2,Analysis submitted,2026-11-17T02:01:33.833513+05:30
+685,180,,submitted,6,Report filed,2026-11-16T17:47:59.784239+05:30
+686,181,,submitted,12,Report filed,2026-11-14T12:00:00+05:30
+687,182,,submitted,14,Report filed,2026-11-14T12:00:00+05:30
+688,183,,submitted,6,Report filed,2026-11-13T12:00:00+05:30
+689,184,,submitted,15,Report filed,2026-11-15T12:00:00+05:30
+690,185,,submitted,12,Report filed,2026-11-17T12:00:00+05:30

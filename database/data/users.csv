@@ -1,0 +1,17 @@
+id,email,full_name,role,designation,base_station,password_hash,is_active
+1,admin@skyshield.example,Meera Krishnan,admin,Head of Safety,DEL,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+2,arjun.mehta@skyshield.example,Arjun Mehta,safety_officer,Safety Officer,DEL,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+3,kavya.reddy@skyshield.example,Kavya Reddy,safety_officer,Safety Officer,HYD,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+4,sanjay.bose@skyshield.example,Sanjay Bose,safety_officer,Senior Safety Officer,BOM,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+5,rohit.sharma@skyshield.example,Capt. Rohit Sharma,reporter,Captain,DEL,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+6,ananya.iyer@skyshield.example,Ananya Iyer,reporter,First Officer,BLR,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+7,vikram.singh@skyshield.example,Capt. Vikram Singh,reporter,Captain,BOM,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+8,priya.nair@skyshield.example,Priya Nair,reporter,Cabin Crew Lead,COK,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+9,rahul.verma@skyshield.example,Rahul Verma,reporter,Aircraft Maintenance Engineer,DEL,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+10,sneha.patil@skyshield.example,Sneha Patil,reporter,First Officer,PNQ,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+11,imran.khan@skyshield.example,Imran Khan,reporter,Ramp Supervisor,HYD,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+12,deepa.menon@skyshield.example,Deepa Menon,reporter,Aircraft Maintenance Engineer,MAA,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+13,amit.das@skyshield.example,Amit Das,reporter,Captain,CCU,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+14,neha.joshi@skyshield.example,Neha Joshi,reporter,Cabin Crew,AMD,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+15,karan.malhotra@skyshield.example,Karan Malhotra,reporter,First Officer,GAU,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
+16,meera.krishnan@skyshield.example,Meera Krishnan,reporter,Cabin Crew,TRV,$2b$10$Ua5NKtY80gaYcQ78ADpSL.OxEEdK.XhRhW5lwa08GvC0ojF0TaBMe,True
