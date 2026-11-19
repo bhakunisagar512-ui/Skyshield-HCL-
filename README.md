@@ -6,7 +6,7 @@ SkyShield is an incident reporting system for an airline safety department. Anyo
 Report → Review & analyse → AI summary + measures → Mark measures → Close → Admin panel
 ```
 
-This repository currently contains the **backend (FastAPI)** and the **dataset**. The React frontend comes next.
+The repository has three parts: the **backend** (FastAPI), the **frontend** (React) and the **dataset**.
 
 ## Contents
 
@@ -31,6 +31,12 @@ skyshield/
 │   ├── alembic/                 migrations
 │   ├── scripts/evaluate_ai.py   retrieval + generation evaluation
 │   └── tests/                   70 pytest tests
+├── frontend/                    React 18 + Vite + Bootstrap 5 + Recharts
+│   └── src/
+│       ├── api.js, auth.jsx     API client (JWT), login state
+│       ├── components/          layout, colour pill, badges, measure icons
+│       └── pages/               login, report form, incident list + detail (officer workflow),
+│                                dashboard, admin/ (overview, incident, users, policies)
 ├── database/
 │   ├── generate_dataset.py      creates data/*.csv (seeded, reproducible)
 │   ├── data/                    users, incidents, measures, ai_summaries, status_history
@@ -58,6 +64,21 @@ uvicorn app.main:app --reload
 ```
 
 Interactive API docs: http://localhost:8000/docs
+
+```bash
+# 3. frontend (needs Node.js 18+), in a second terminal
+cd frontend
+npm install
+npm run dev                                          # http://localhost:5173
+```
+
+The frontend forwards `/api` to the backend on port 8000, so both must be running. The login page has buttons that fill in the demo accounts.
+
+### Screens by role
+
+- **Reporter:** report form (with validation), "My reports", and each report's status and history. Reporters do not see measures or AI output.
+- **Safety Officer:** incident queue with status tabs and filters. On the incident page: start review, then severity + analysis, then the AI draft (approve, edit, discard or regenerate; it refreshes automatically while generating). Then the measures checklist: Applied, or Not applied with a required reason; click a MUST/SHOULD badge to change priority; add your own measures. Last, close the incident, with a preview of the colour it will close as. Also the dashboard and the policy library.
+- **Admin:** safety overview with red / yellow / in-progress / green totals as filters, red first; each incident shows its short summary and ✅ ⚠️ ❌ counts. The incident view shows the issue, summary, suggested measures, applied measures and not-applied measures with reasons. Also the dashboard, user management and the policy library with a search that shows which sections the AI would use.
 
 Check the whole flow including the AI with the server running: `python -m scripts.smoke_test`
 
