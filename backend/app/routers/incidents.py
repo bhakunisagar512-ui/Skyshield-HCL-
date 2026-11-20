@@ -71,6 +71,7 @@ def list_incidents(
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
 ):
+    workflow.check_date_range(date_from, date_to)
     consistent_read(db)
     stmt = select(Incident)
     if user.role == Role.REPORTER:

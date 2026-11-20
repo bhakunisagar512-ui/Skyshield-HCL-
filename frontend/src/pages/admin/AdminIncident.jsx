@@ -42,7 +42,7 @@ export default function AdminIncident() {
         <div className="card-body d-flex justify-content-between flex-wrap gap-2">
           <div>
             <div className="small muted">{d.reference} · {categoryLabel(d.category)} · {airportLabel(d.airport_code)} · {formatDate(d.occurred_at)}</div>
-            <h1 className="page-title">{d.title}</h1>
+            <h1 className="page-title text-break">{d.title}</h1>
           </div>
           <div className="d-flex flex-column align-items-end gap-2">
             <ColourPill colour={d.colour} long />

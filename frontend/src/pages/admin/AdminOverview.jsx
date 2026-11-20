@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { api } from '../../api'
-import { ColourPill, ErrorAlert, MeasureIcon, Pagination, SeverityBadge, Spinner, StatusBadge } from '../../components/ui'
-import { formatDate, useTaxonomy } from '../../taxonomy'
+import { ColourPill, DateFilter, ErrorAlert, MeasureIcon, Pagination, SeverityBadge, Spinner, StatusBadge } from '../../components/ui'
+import { dayRange, formatDate, formatDay, useTaxonomy } from '../../taxonomy'
 
 const CHIPS = [
   ['red', 'Red', 'Mandatory measure not applied'],
@@ -21,12 +21,15 @@ export default function AdminOverview() {
   const status = params.get('status') || ''
   const category = params.get('category') || ''
   const late = params.get('late') === '1'
+  const day = params.get('date') || ''
   const page = Number(params.get('page') || 1)
 
   useEffect(() => {
     setData(null)
-    api('/admin/incidents', { query: { colour, status, category, completed_late: late || '', page, page_size: 15 } }).then(setData).catch(setError)
-  }, [colour, status, category, late, page])
+    const [date_from, date_to] = dayRange(day)
+    api('/admin/incidents', { query: { colour, status, category, completed_late: late || '', date_from, date_to, page, page_size: 15 } })
+      .then(setData).catch(setError)
+  }, [colour, status, category, late, day, page])
 
   const update = (changes) => {
     const next = new URLSearchParams(params)
@@ -79,6 +82,7 @@ export default function AdminOverview() {
           <option value="">All categories</option>
           {tax?.categories?.map((c) => <option key={c.code} value={c.code}>{c.label}</option>)}
         </select>
+        <DateFilter value={day} onChange={(v) => update({ date: v })} />
         <div className="form-check form-switch d-flex align-items-center gap-2 ms-1">
           <input className="form-check-input" type="checkbox" id="lateOnly" checked={late}
                  onChange={(e) => update({ late: e.target.checked ? '1' : '' })} />
@@ -89,8 +93,18 @@ export default function AdminOverview() {
       </div>
 
       <ErrorAlert error={error} />
+      {day && data && (
+        <div className="small mb-2">
+          <i className="bi bi-calendar-event me-1" aria-hidden="true" />
+          <strong>{data.total}</strong> incident{data.total === 1 ? '' : 's'} on <strong>{formatDay(day)}</strong>
+          {' '}(the colour counts above are for this day)
+          <button className="btn btn-link btn-sm py-0" onClick={() => update({ date: '' })}>Show all dates</button>
+        </div>
+      )}
       {!data ? <Spinner /> : data.items.length === 0 ? (
-        <div className="card"><div className="card-body muted text-center py-5">No incidents match these filters.</div></div>
+        <div className="card"><div className="card-body muted text-center py-5">
+          {day ? `No incidents on ${formatDay(day)} with these filters.` : 'No incidents match these filters.'}
+        </div></div>
       ) : (
         <div className="d-flex flex-column gap-2">
           {data.items.map((i) => (
@@ -104,7 +118,7 @@ export default function AdminOverview() {
                     <div className="small muted mb-1">
                       {[i.reference, categoryLabel(i.category), airportLabel(i.airport_code), formatDate(i.occurred_at, false)].join(' · ')}
                     </div>
-                    <div className="fw-semibold">{i.title}</div>
+                    <div className="fw-semibold text-break">{i.title}</div>
                     {i.short_summary && <div className="small muted mt-1">{i.short_summary}</div>}
                   </div>
                   <div className="d-flex flex-md-column flex-wrap align-items-center align-items-md-end gap-2 flex-shrink-0">
