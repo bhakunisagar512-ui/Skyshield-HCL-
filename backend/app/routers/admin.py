@@ -2,12 +2,14 @@ from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session, selectinload
 
-from app.core.deps import admin_only
+from app.core.deps import admin_only, get_current_user
 from app.core.security import hash_password
-from app.core.taxonomy import IncidentStatus
+from app.core.taxonomy import IncidentStatus, Role
 from app.database import consistent_read, get_db
 from app.models import Incident, User
-from app.schemas import AdminIncidentDetail, AdminIncidentPage, ColourName, UserCreate, UserOut
+from app.schemas import (
+    AdminIncidentDetail, AdminIncidentPage, ColourName, PasswordReset, UserCreate, UserOut, UserUpdate,
+)
 from app.services.serialize import admin_detail, admin_item, colour_subquery
 
 router = APIRouter(prefix="/admin", tags=["admin"], dependencies=[Depends(admin_only)])
@@ -81,3 +83,49 @@ def create_user(body: UserCreate, db: Session = Depends(get_db)):
     db.add(user)
     db.commit()
     return user
+
+
+def _get_user(db: Session, user_id: int) -> User:
+    user = db.get(User, user_id)
+    if user is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "User not found")
+    return user
+
+
+def _active_admins(db: Session) -> int:
+    return db.scalar(select(func.count()).select_from(User).where(User.role == Role.ADMIN, User.is_active)) or 0
+
+
+@router.patch("/users/{user_id}", response_model=UserOut)
+def update_user(user_id: int, body: UserUpdate, db: Session = Depends(get_db),
+                me: User = Depends(get_current_user)):
+    """Edit a user. Users are never deleted, because incidents, history and measures
+    keep a record of who did what; deactivating stops sign-in instead."""
+    user = _get_user(db, user_id)
+    changes = body.model_dump(exclude_unset=True)
+
+    if user.id == me.id and (changes.get("is_active") is False or
+                             ("role" in changes and changes["role"] != Role.ADMIN)):
+        raise HTTPException(status.HTTP_409_CONFLICT,
+                            "You cannot deactivate yourself or remove your own admin role")
+    losing_admin = user.role == Role.ADMIN and user.is_active and (
+        changes.get("is_active") is False or ("role" in changes and changes["role"] != Role.ADMIN))
+    if losing_admin and _active_admins(db) <= 1:
+        raise HTTPException(status.HTTP_409_CONFLICT, "There must always be at least one active admin")
+
+    for field in ("full_name", "role", "designation", "is_active"):
+        if field in changes and changes[field] is not None:
+            setattr(user, field, changes[field])
+    if "designation" in changes and changes["designation"] is None:
+        user.designation = None
+    if "base_station" in changes:
+        user.base_station = changes["base_station"] or None
+    db.commit()
+    return user
+
+
+@router.post("/users/{user_id}/reset-password", status_code=status.HTTP_204_NO_CONTENT)
+def reset_password(user_id: int, body: PasswordReset, db: Session = Depends(get_db)):
+    user = _get_user(db, user_id)
+    user.password_hash = hash_password(body.password)
+    db.commit()

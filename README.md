@@ -30,7 +30,7 @@ skyshield/
 │   │       └── ai/              embeddings, LLM providers, RAG pipeline
 │   ├── alembic/                 migrations
 │   ├── scripts/evaluate_ai.py   retrieval + generation evaluation
-│   └── tests/                   70 pytest tests
+│   └── tests/                   77 pytest tests
 ├── frontend/                    React 18 + Vite + Bootstrap 5 + Recharts
 │   └── src/
 │       ├── api.js, auth.jsx     API client (JWT), login state
@@ -78,7 +78,7 @@ The frontend forwards `/api` to the backend on port 8000, so both must be runnin
 
 - **Reporter:** report form (with validation), "My reports", and each report's status and history. Reporters do not see measures or AI output.
 - **Safety Officer:** incident queue with status tabs and filters. On the incident page: start review, then severity + analysis, then the AI draft (approve, edit, discard or regenerate; it refreshes automatically while generating). Then the measures checklist: Applied, or Not applied with a required reason; click a MUST/SHOULD badge to change priority; add your own measures. Last, close the incident, with a preview of the colour it will close as. Also the dashboard and the policy library.
-- **Admin:** safety overview with red / yellow / in-progress / green totals as filters, red first; each incident shows its short summary and ✅ ⚠️ ❌ counts. The incident view shows the issue, summary, suggested measures, applied measures and not-applied measures with reasons. Also the dashboard, user management and the policy library with a search that shows which sections the AI would use.
+- **Admin:** safety overview with red / yellow / in-progress / green totals as filters, red first; each incident shows its short summary and ✅ ⚠️ ❌ counts. The incident view shows the issue, summary, suggested measures, applied measures and not-applied measures with reasons. Also the dashboard, the policy library with a search that shows which sections the AI would use, and user management: add users, change roles, reset passwords, and deactivate or reactivate accounts. Users are never deleted, so the audit trail stays complete. An admin can't deactivate or demote themselves, and the last active admin can't be removed.
 
 Check the whole flow including the AI with the server running: `python -m scripts.smoke_test`
 
@@ -130,7 +130,7 @@ To regenerate the dataset (optional, the CSVs are already committed): `python da
 | PATCH | `/api/measures/{id}` (status, reason, priority) | officer |
 | POST | `/api/incidents/{id}/close` | officer |
 | GET | `/api/admin/incidents` (sorted red → yellow → grey → green, colour totals), `/api/admin/incidents/{id}` | admin |
-| GET/POST | `/api/admin/users` | admin |
+| GET/POST | `/api/admin/users` · PATCH `/api/admin/users/{id}` (role, details, deactivate/reactivate) · POST `/api/admin/users/{id}/reset-password` | admin |
 | GET | `/api/dashboard/stats` | officer, admin |
 | GET | `/api/policies`, `/api/policies/search?q=` · POST `/api/policies` (admin) | officer, admin |
 | GET | `/api/meta/taxonomy`, `/api/health` | public |
@@ -156,7 +156,7 @@ Set `LLM_PROVIDER` in `.env`:
 
 ```bash
 cd backend
-pytest -q                          # 70 tests; uses the skyshield_test database
+pytest -q                          # 77 tests; uses the skyshield_test database
 python -m scripts.evaluate_ai      # retrieval + generation metrics on 32 hand-written cases
 ```
 
