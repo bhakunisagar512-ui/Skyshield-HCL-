@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { api } from '../../api'
 import { ColourPill, ErrorAlert, MeasureIcon, PriorityBadge } from '../../components/ui'
-import { humanize, useTaxonomy } from '../../taxonomy'
+import { formatDate, humanize, useTaxonomy } from '../../taxonomy'
 
 /* Colour the incident would have with these measures (mirrors the backend rule). */
 export function previewColour(measures) {
@@ -172,9 +172,22 @@ export function SummaryCard({ incident, editable, onChange }) {
   )
 }
 
-function MeasureRow({ m, editable, onChange }) {
+export function FollowUpInfo({ m }) {
+  if (!m.completed_late) return null
+  return (
+    <div className="small mt-2 p-2 rounded" style={{ background: '#eef7ee', border: '1px solid #cfe8cf' }}>
+      <div><span className="fw-semibold">Completed after closing</span> · {formatDate(m.completed_at)}{m.completed_by && ` · ${m.completed_by}`}</div>
+      <div>{m.completion_note}</div>
+      {m.reason && <div className="muted mt-1">Originally not applied: {m.reason}</div>}
+    </div>
+  )
+}
+
+function MeasureRow({ m, editable, followUp, onChange }) {
   const [reasonOpen, setReasonOpen] = useState(false)
   const [reason, setReason] = useState(m.reason || '')
+  const [completeOpen, setCompleteOpen] = useState(false)
+  const [note, setNote] = useState('')
   const { busy, error, run } = useAction(onChange)
   const patch = (body) => run(() => api(`/measures/${m.id}`, { method: 'PATCH', body }))
 
@@ -191,11 +204,29 @@ function MeasureRow({ m, editable, onChange }) {
               </button>
             ) : <PriorityBadge priority={m.priority} />}
             {m.source === 'officer' && <span className="badge badge-soft">Added by officer</span>}
+            {m.completed_late && <span className="badge text-bg-success">Completed after closing</span>}
             {m.policy_reference && <span className="small muted"><i className="bi bi-journal-text me-1" aria-hidden="true" />{m.policy_reference}</span>}
           </div>
           <div>{m.description}</div>
           {m.status === 'not_applied' && m.reason && !reasonOpen && (
             <div className="small mt-1"><span className="fw-semibold">Reason not applied:</span> {m.reason}</div>
+          )}
+          <FollowUpInfo m={m} />
+          {completeOpen && (
+            <form className="mt-2" onSubmit={(e) => {
+              e.preventDefault()
+              run(() => api(`/measures/${m.id}/complete`, { method: 'POST', body: { note: note.trim() } }))
+                .then((ok) => ok && setCompleteOpen(false))
+            }}>
+              <label className="form-label small fw-semibold mb-1" htmlFor={`note-${m.id}`}>What was done? (required)</label>
+              <div className="d-flex gap-2">
+                <input id={`note-${m.id}`} className="form-control form-control-sm" autoFocus maxLength={1000}
+                       placeholder="e.g. Part fitted on 12 Dec by R. Verma, work order WO-4471"
+                       value={note} onChange={(e) => setNote(e.target.value)} />
+                <button className="btn btn-sm btn-success text-nowrap" disabled={busy || note.trim().length < 5}>Mark completed</button>
+                <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => setCompleteOpen(false)}>Cancel</button>
+              </div>
+            </form>
           )}
           {reasonOpen && (
             <form className="d-flex gap-2 mt-2" onSubmit={(e) => {
@@ -210,6 +241,11 @@ function MeasureRow({ m, editable, onChange }) {
           )}
           {error && <div className="text-danger small mt-1">{error.message}</div>}
         </div>
+        {followUp && m.status === 'not_applied' && !completeOpen && (
+          <button className="btn btn-sm btn-outline-success flex-shrink-0" onClick={() => setCompleteOpen(true)}>
+            <i className="bi bi-check2-circle me-1" aria-hidden="true" />Mark as completed
+          </button>
+        )}
         {editable && !reasonOpen && (
           <div className="btn-group btn-group-sm flex-shrink-0" role="group" aria-label="Mark measure">
             <button className={`btn ${m.status === 'applied' ? 'btn-success' : 'btn-outline-success'}`} disabled={busy}
@@ -229,7 +265,7 @@ function MeasureRow({ m, editable, onChange }) {
   )
 }
 
-export function MeasuresCard({ incident, editable, onChange }) {
+export function MeasuresCard({ incident, editable, followUp = false, onChange }) {
   const [desc, setDesc] = useState('')
   const [priority, setPriority] = useState('should')
   const { busy, error, run } = useAction(onChange)
@@ -248,11 +284,18 @@ export function MeasuresCard({ incident, editable, onChange }) {
         </span>
       </div>
       <div className="card-body pt-1">
+        {followUp && ms.some((m) => m.status === 'not_applied') && (
+          <div className="alert alert-info py-2 small mt-2 mb-1">
+            <i className="bi bi-info-circle me-1" aria-hidden="true" />
+            This incident is closed. If a measure that was not applied has since been carried out, mark it as completed.
+            The incident stays closed and the original reason is kept.
+          </div>
+        )}
         {ms.length === 0 && <div className="muted py-3">No measures yet.{editable && ' Add one below, or regenerate the AI suggestions.'}</div>}
         {must.length > 0 && <div className="small-label mt-2">Must be done</div>}
-        {must.map((m) => <MeasureRow key={m.id} m={m} editable={editable} onChange={onChange} />)}
+        {must.map((m) => <MeasureRow key={m.id} m={m} editable={editable} followUp={followUp} onChange={onChange} />)}
         {should.length > 0 && <div className="small-label mt-3">Should be done</div>}
-        {should.map((m) => <MeasureRow key={m.id} m={m} editable={editable} onChange={onChange} />)}
+        {should.map((m) => <MeasureRow key={m.id} m={m} editable={editable} followUp={followUp} onChange={onChange} />)}
 
         {editable && (
           <form className="mt-3 pt-3 border-top" onSubmit={(e) => {

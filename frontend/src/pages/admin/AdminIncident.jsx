@@ -3,8 +3,9 @@ import { Link, useParams } from 'react-router-dom'
 import { api } from '../../api'
 import { ColourPill, ErrorAlert, MeasureIcon, PriorityBadge, SeverityBadge, Spinner, StatusBadge } from '../../components/ui'
 import { formatDate, useTaxonomy } from '../../taxonomy'
+import { FollowUpInfo } from '../officer/Workflow'
 
-function MeasureList({ items, empty, showReason }) {
+function MeasureList({ items, empty, showReason, showFollowUp }) {
   if (!items.length) return <div className="muted small">{empty}</div>
   return items.map((m) => (
     <div key={m.id} className="measure-row d-flex gap-3">
@@ -13,10 +14,12 @@ function MeasureList({ items, empty, showReason }) {
         <div className="d-flex gap-2 align-items-center flex-wrap mb-1">
           <PriorityBadge priority={m.priority} />
           {m.source === 'officer' && <span className="badge badge-soft">Added by officer</span>}
+          {m.completed_late && <span className="badge text-bg-success">Completed after closing</span>}
           {m.policy_reference && <span className="small muted">{m.policy_reference}</span>}
         </div>
         <div>{m.description}</div>
         {showReason && m.reason && <div className="small mt-1"><span className="fw-semibold">Reason:</span> {m.reason}</div>}
+        {showFollowUp && <FollowUpInfo m={m} />}
       </div>
     </div>
   ))
@@ -69,7 +72,7 @@ export default function AdminIncident() {
         <div className="col-lg-6">
           <div className="card mb-3">
             <div className="card-header"><MeasureIcon icon="tick" /> Applied measures ({d.applied_measures.length})</div>
-            <div className="card-body pt-1"><MeasureList items={d.applied_measures} empty="None applied yet." /></div>
+            <div className="card-body pt-1"><MeasureList items={d.applied_measures} empty="None applied yet." showFollowUp /></div>
           </div>
           <div className="card mb-3">
             <div className="card-header"><MeasureIcon icon="cross" /> Not applied ({d.not_applied_measures.length})</div>

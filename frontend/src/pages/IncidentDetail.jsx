@@ -96,7 +96,8 @@ export default function IncidentDetail() {
 
           {!isReporter && <SummaryCard incident={incident} editable={isOfficer && open} onChange={load} />}
           {!isReporter && (incident.status === 'measures_pending' || incident.status === 'closed') && (
-            <MeasuresCard incident={incident} editable={isOfficer && open} onChange={load} />
+            <MeasuresCard incident={incident} editable={isOfficer && open}
+                          followUp={isOfficer && incident.status === 'closed'} onChange={load} />
           )}
           {isOfficer && open && <CloseCard incident={incident} onChange={load} />}
 
@@ -114,7 +115,7 @@ export default function IncidentDetail() {
               <ul className="timeline">
                 {incident.history.map((h, idx) => (
                   <li key={idx}>
-                    <div className="fw-semibold small">{humanize(h.to_status)}</div>
+                    <div className="fw-semibold small">{h.from_status === h.to_status ? 'Follow-up' : humanize(h.to_status)}</div>
                     <div className="small muted">{formatDate(h.changed_at)}{h.changed_by && ` · ${h.changed_by.full_name}`}</div>
                     {h.note && <div className="small">{h.note}</div>}
                   </li>

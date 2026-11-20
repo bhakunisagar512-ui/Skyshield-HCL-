@@ -20,12 +20,13 @@ export default function AdminOverview() {
   const colour = params.get('colour') || ''
   const status = params.get('status') || ''
   const category = params.get('category') || ''
+  const late = params.get('late') === '1'
   const page = Number(params.get('page') || 1)
 
   useEffect(() => {
     setData(null)
-    api('/admin/incidents', { query: { colour, status, category, page, page_size: 15 } }).then(setData).catch(setError)
-  }, [colour, status, category, page])
+    api('/admin/incidents', { query: { colour, status, category, completed_late: late || '', page, page_size: 15 } }).then(setData).catch(setError)
+  }, [colour, status, category, late, page])
 
   const update = (changes) => {
     const next = new URLSearchParams(params)
@@ -78,6 +79,13 @@ export default function AdminOverview() {
           <option value="">All categories</option>
           {tax?.categories?.map((c) => <option key={c.code} value={c.code}>{c.label}</option>)}
         </select>
+        <div className="form-check form-switch d-flex align-items-center gap-2 ms-1">
+          <input className="form-check-input" type="checkbox" id="lateOnly" checked={late}
+                 onChange={(e) => update({ late: e.target.checked ? '1' : '' })} />
+          <label className="form-check-label small" htmlFor="lateOnly">
+            Completed after closing{data ? ` (${data.completed_late_total})` : ''}
+          </label>
+        </div>
       </div>
 
       <ErrorAlert error={error} />
@@ -111,6 +119,7 @@ export default function AdminOverview() {
                         {i.counts.not_applied_should > 0 && <span title="Recommended, not applied"><MeasureIcon icon="exclamation" /> {i.counts.not_applied_should}</span>}
                         {i.counts.not_applied_must > 0 && <span title="Mandatory, not applied"><MeasureIcon icon="cross" /> {i.counts.not_applied_must}</span>}
                         {i.counts.pending > 0 && <span title="Pending"><MeasureIcon icon="pending" /> {i.counts.pending}</span>}
+                        {i.counts.completed_late > 0 && <span className="badge text-bg-success" title="Completed after closing">{i.counts.completed_late} late fix</span>}
                       </div>
                     )}
                   </div>
