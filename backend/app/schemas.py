@@ -50,6 +50,18 @@ class UserCreate(BaseModel):
     base_station: str | None = None
 
 
+class UserUpdate(BaseModel):
+    full_name: str | None = Field(default=None, min_length=2, max_length=120)
+    role: Role | None = None
+    designation: str | None = Field(default=None, max_length=80)
+    base_station: str | None = None
+    is_active: bool | None = None
+
+
+class PasswordReset(BaseModel):
+    password: str = Field(min_length=8, max_length=128)
+
+
 class UserBrief(ORM):
     id: int
     full_name: str
