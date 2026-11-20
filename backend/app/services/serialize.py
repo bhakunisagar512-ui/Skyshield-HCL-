@@ -16,10 +16,14 @@ from app.schemas import (
 )
 from app.services.status_rules import incident_colour, measure_icon
 
+_COMPUTED = {"icon", "completed_late", "completed_by"}
+
 
 def measure_out(m: Measure) -> MeasureOut:
-    return MeasureOut.model_validate({**{c: getattr(m, c) for c in MeasureOut.model_fields if c != "icon"},
-                                      "icon": measure_icon(m)})
+    data = {c: getattr(m, c) for c in MeasureOut.model_fields if c not in _COMPUTED}
+    data.update(icon=measure_icon(m), completed_late=m.completed_at is not None,
+                completed_by=m.completed_by.full_name if m.completed_by else None)
+    return MeasureOut.model_validate(data)
 
 
 def list_item(i: Incident) -> IncidentListItem:
@@ -62,6 +66,7 @@ def counts(measures: list[Measure]) -> MeasureCounts:
         not_applied_must=sum(m.status == MeasureStatus.NOT_APPLIED and m.priority == MeasurePriority.MUST for m in measures),
         not_applied_should=sum(m.status == MeasureStatus.NOT_APPLIED and m.priority == MeasurePriority.SHOULD for m in measures),
         pending=sum(m.status == MeasureStatus.PENDING for m in measures),
+        completed_late=sum(m.completed_at is not None for m in measures),
     )
 
 

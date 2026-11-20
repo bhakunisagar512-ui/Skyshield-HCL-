@@ -50,6 +50,18 @@ class UserCreate(BaseModel):
     base_station: str | None = None
 
 
+class UserUpdate(BaseModel):
+    full_name: str | None = Field(default=None, min_length=2, max_length=120)
+    role: Role | None = None
+    designation: str | None = Field(default=None, max_length=80)
+    base_station: str | None = None
+    is_active: bool | None = None
+
+
+class PasswordReset(BaseModel):
+    password: str = Field(min_length=8, max_length=128)
+
+
 class UserBrief(ORM):
     id: int
     full_name: str
@@ -137,6 +149,10 @@ class MeasureUpdate(BaseModel):
         return self
 
 
+class MeasureComplete(BaseModel):
+    note: str = Field(min_length=5, max_length=1000, description="What was done, by whom, reference")
+
+
 class MeasureOut(ORM):
     id: int
     description: str
@@ -147,6 +163,10 @@ class MeasureOut(ORM):
     policy_reference: str | None
     marked_at: datetime | None
     icon: str
+    completed_late: bool = False
+    completion_note: str | None = None
+    completed_at: datetime | None = None
+    completed_by: str | None = None
 
 
 class SummaryOut(ORM):
@@ -216,6 +236,7 @@ class MeasureCounts(BaseModel):
     not_applied_must: int
     not_applied_should: int
     pending: int
+    completed_late: int = 0
 
 
 class AdminIncidentItem(BaseModel):
@@ -235,6 +256,7 @@ class AdminIncidentItem(BaseModel):
 class AdminIncidentPage(Page):
     items: list[AdminIncidentItem]
     colour_totals: dict[str, int]
+    completed_late_total: int = 0
 
 
 class AdminIncidentDetail(BaseModel):

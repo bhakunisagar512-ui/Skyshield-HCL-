@@ -1,14 +1,25 @@
+from datetime import datetime
+
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session, selectinload
 
-from app.core.deps import admin_only
+from app.core.deps import admin_only, get_current_user
 from app.core.security import hash_password
-from app.core.taxonomy import IncidentStatus
+from app.core.taxonomy import IncidentStatus, Role
 from app.database import consistent_read, get_db
-from app.models import Incident, User
-from app.schemas import AdminIncidentDetail, AdminIncidentPage, ColourName, UserCreate, UserOut
+from app.models import Incident, Measure, User
+from app.schemas import (
+    AdminIncidentDetail,
+    AdminIncidentPage,
+    ColourName,
+    PasswordReset,
+    UserCreate,
+    UserOut,
+    UserUpdate,
+)
 from app.services.serialize import admin_detail, admin_item, colour_subquery
+from app.services.workflow import check_date_range
 
 router = APIRouter(prefix="/admin", tags=["admin"], dependencies=[Depends(admin_only)])
 
@@ -19,22 +30,32 @@ def admin_incidents(
     colour: ColourName | None = None,
     status_: IncidentStatus | None = Query(None, alias="status"),
     category: str | None = None,
+    completed_late: bool = Query(False, description="Only incidents with a measure completed after closing"),
+    date_from: datetime | None = Query(None, description="Occurred at or after (ISO 8601 with timezone)"),
+    date_to: datetime | None = Query(None, description="Occurred at or before (ISO 8601 with timezone)"),
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
 ):
+    check_date_range(date_from, date_to)
     consistent_read(db)
     cs = colour_subquery()
-    base = select(Incident).join(cs, cs.c.incident_id == Incident.id)
-    if status_:
-        base = base.where(Incident.status == status_)
-    if category:
-        base = base.where(Incident.category == category)
+    late_ids = select(Measure.incident_id).where(Measure.completed_at.is_not(None))
 
+    # filters shared by the list, the colour totals and the late-fix total
     filters = []
     if status_:
         filters.append(Incident.status == status_)
     if category:
         filters.append(Incident.category == category)
+    if date_from:
+        filters.append(Incident.occurred_at >= date_from)
+    if date_to:
+        filters.append(Incident.occurred_at <= date_to)
+
+    base = select(Incident).join(cs, cs.c.incident_id == Incident.id).where(*filters)
+    if completed_late:
+        base = base.where(Incident.id.in_(late_ids))
+
     totals_rows = db.execute(
         select(cs.c.colour, func.count())
         .join(Incident, Incident.id == cs.c.incident_id)
@@ -43,6 +64,7 @@ def admin_incidents(
     ).all()
     colour_totals = {c: 0 for c in ("red", "yellow", "green", "grey")}
     colour_totals.update({c: n for c, n in totals_rows})
+    late_total = db.scalar(select(func.count()).select_from(Incident).where(Incident.id.in_(late_ids), *filters)) or 0
 
     stmt = base.where(cs.c.colour == colour) if colour else base
     total = db.scalar(select(func.count()).select_from(stmt.subquery()))
@@ -53,15 +75,16 @@ def admin_incidents(
         .order_by(order, Incident.occurred_at.desc())
         .offset((page - 1) * page_size).limit(page_size)
     ).all()
-    return AdminIncidentPage(total=total, page=page, page_size=page_size,
-                             items=[admin_item(i) for i in rows], colour_totals=colour_totals)
+    return AdminIncidentPage(total=total, page=page, page_size=page_size, items=[admin_item(i) for i in rows],
+                             colour_totals=colour_totals, completed_late_total=late_total)
 
 
 @router.get("/incidents/{incident_id}", response_model=AdminIncidentDetail)
 def admin_incident(incident_id: int, db: Session = Depends(get_db)):
     consistent_read(db)
     i = db.scalar(select(Incident).where(Incident.id == incident_id)
-                  .options(selectinload(Incident.measures), selectinload(Incident.summaries)))
+                  .options(selectinload(Incident.measures).selectinload(Measure.completed_by),
+                           selectinload(Incident.summaries)))
     if i is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Incident not found")
     return admin_detail(i)
@@ -81,3 +104,49 @@ def create_user(body: UserCreate, db: Session = Depends(get_db)):
     db.add(user)
     db.commit()
     return user
+
+
+def _get_user(db: Session, user_id: int) -> User:
+    user = db.get(User, user_id)
+    if user is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "User not found")
+    return user
+
+
+def _active_admins(db: Session) -> int:
+    return db.scalar(select(func.count()).select_from(User).where(User.role == Role.ADMIN, User.is_active)) or 0
+
+
+@router.patch("/users/{user_id}", response_model=UserOut)
+def update_user(user_id: int, body: UserUpdate, db: Session = Depends(get_db),
+                me: User = Depends(get_current_user)):
+    """Edit a user. Users are never deleted, because incidents, history and measures
+    keep a record of who did what; deactivating stops sign-in instead."""
+    user = _get_user(db, user_id)
+    changes = body.model_dump(exclude_unset=True)
+
+    if user.id == me.id and (changes.get("is_active") is False or
+                             ("role" in changes and changes["role"] != Role.ADMIN)):
+        raise HTTPException(status.HTTP_409_CONFLICT,
+                            "You cannot deactivate yourself or remove your own admin role")
+    losing_admin = user.role == Role.ADMIN and user.is_active and (
+        changes.get("is_active") is False or ("role" in changes and changes["role"] != Role.ADMIN))
+    if losing_admin and _active_admins(db) <= 1:
+        raise HTTPException(status.HTTP_409_CONFLICT, "There must always be at least one active admin")
+
+    for field in ("full_name", "role", "designation", "is_active"):
+        if field in changes and changes[field] is not None:
+            setattr(user, field, changes[field])
+    if "designation" in changes and changes["designation"] is None:
+        user.designation = None
+    if "base_station" in changes:
+        user.base_station = changes["base_station"] or None
+    db.commit()
+    return user
+
+
+@router.post("/users/{user_id}/reset-password", status_code=status.HTTP_204_NO_CONTENT)
+def reset_password(user_id: int, body: PasswordReset, db: Session = Depends(get_db)):
+    user = _get_user(db, user_id)
+    user.password_hash = hash_password(body.password)
+    db.commit()
