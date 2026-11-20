@@ -1,5 +1,7 @@
 // Thin fetch wrapper around the SkyShield API.
 const TOKEN_KEY = 'skyshield_token'
+// Empty in development (Vite forwards /api). In production, the backend's address, e.g. https://skyshield-api.onrender.com
+const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '')
 
 export const tokenStore = {
   get: () => {
@@ -40,7 +42,7 @@ function parseError(status, body) {
 }
 
 export async function api(path, { method = 'GET', body, query } = {}) {
-  let url = `/api${path}`
+  let url = `${API_BASE}/api${path}`
   if (query) {
     const params = new URLSearchParams()
     Object.entries(query).forEach(([k, v]) => {
@@ -58,7 +60,9 @@ export async function api(path, { method = 'GET', body, query } = {}) {
   try {
     res = await fetch(url, { method, headers, body: body !== undefined ? JSON.stringify(body) : undefined })
   } catch {
-    throw new ApiError(0, 'Cannot reach the server. Is the API running?')
+    throw new ApiError(0, API_BASE
+      ? 'Cannot reach the server. If it was idle it may be waking up; try again in a minute.'
+      : 'Cannot reach the server. Is the API running?')
   }
   const text = await res.text()
   const data = text ? JSON.parse(text) : null

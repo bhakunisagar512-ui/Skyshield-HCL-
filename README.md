@@ -26,6 +26,7 @@ Report → Review & analyse → AI summary + measures → Mark measures → Clos
 | Background work | FastAPI BackgroundTasks |
 | Testing | pytest (88 tests), an AI evaluation script (32 cases), an end-to-end smoke test |
 | Tools | Git + GitHub, Docker Desktop, VS Code |
+| Hosting | Render (API + PostgreSQL), GitHub Pages (frontend) |
 
 ## Architecture
 
@@ -69,7 +70,7 @@ Skyshield/
 │   ├── requirements.txt, pytest.ini, alembic.ini
 │   └── .env.example             copy to .env (never commit .env)
 ├── frontend/
-│   ├── vite.config.js           dev server on 5173, forwards /api to 8000
+│   ├── vite.config.js           dev server on 5173, forwards /api to 8000; VITE_BASE sets the deploy path
 │   └── src/
 │       ├── api.js, auth.jsx     API client with JWT, login state
 │       ├── taxonomy.jsx         dropdown lists from the API, date formatting
@@ -84,7 +85,9 @@ Skyshield/
 │   ├── policies/                17 SOP documents the AI reads
 │   ├── eval/eval_set.json       32 hand-written incidents with expected answers
 │   └── init-test-db.sql         creates the test database when Docker first starts
-└── docker-compose.yml           PostgreSQL 16 + pgvector on port 5433
+├── docker-compose.yml           PostgreSQL 16 + pgvector on port 5433
+├── render.yaml                  Render Blueprint: database + API
+└── .github/workflows/           deploy-frontend.yml: builds and publishes the frontend to GitHub Pages
 ```
 
 ## Setup (first time)
@@ -235,6 +238,38 @@ The tests cover every colour combination and that the SQL colour filter matches 
 | Output has both Must and Should | 100% | 100% |
 
 Retrieval is identical because it runs before the model. Keyword recall is a strict word match, so Haiku's rephrased measures (for example "inspect the door for damage" instead of "damage inspection") count as misses; it understates Haiku slightly.
+
+## Deployment (Render + GitHub Pages)
+
+The **API and database** run on Render; the **frontend** is a static site on GitHub Pages. Both are free, with limits: the free Render API **sleeps after 15 minutes** without traffic (the next visit takes about a minute to wake it), and a free Render database **expires after 30 days**.
+
+Files involved: `render.yaml` (Render Blueprint: database + API), `.github/workflows/deploy-frontend.yml` (builds and publishes the frontend), and two settings the frontend reads at build time: `VITE_API_URL` (the API's address) and `VITE_BASE` (the repository path).
+
+**1. Backend on Render**
+1. Sign in to render.com with GitHub. **New → Blueprint**, pick this repository and the `main` branch.
+2. Render reads `render.yaml` and asks for two values:
+   - `CORS_ORIGINS`: `https://<your-github-username>.github.io`
+   - `ANTHROPIC_API_KEY`: your key (or later set `LLM_PROVIDER=mock` to run without one)
+3. **Apply.** On every deploy Render installs the requirements, runs `alembic upgrade head` (which also enables pgvector) and starts the API. Check `https://<your-service>.onrender.com/api/health`.
+
+**2. Load the demo data** (once, from your own machine). In Render, open the database → **Connect** → copy the **External Database URL**. Then:
+```powershell
+cd backend
+.\venv\Scripts\Activate.ps1
+$env:DATABASE_URL = "<External Database URL>"
+python -m app.seed --reset
+Remove-Item Env:DATABASE_URL
+```
+
+**3. Frontend on GitHub Pages**
+1. Repository **Settings → Pages → Source: GitHub Actions**.
+2. **Settings → Secrets and variables → Actions → Variables → New repository variable**: `VITE_API_URL` = `https://<your-service>.onrender.com` (no trailing slash).
+3. **Actions → Deploy frontend to GitHub Pages → Run workflow**. It also runs on every push to `main` that changes `frontend/`.
+4. Open `https://<your-github-username>.github.io/<repository-name>/`.
+
+GitHub Pages on a free account works only for **public** repositories. For a private repository, either make it public, use GitHub Pro (free for verified students through GitHub Education), or host the frontend on Render as a **Static Site** instead: root directory `frontend`, build command `npm ci && npm run build`, publish directory `dist`, environment variable `VITE_API_URL`, and a rewrite rule `/*` → `/index.html`. Then put that site's address in `CORS_ORIGINS`.
+
+**Before sharing the link:** the demo accounts share a published password, and anyone who logs in as an officer can trigger AI calls on your Anthropic key. Set a monthly spend limit in the Anthropic console, change the demo passwords on the **Users** page, or deploy with `LLM_PROVIDER=mock`.
 
 ## Git workflow
 

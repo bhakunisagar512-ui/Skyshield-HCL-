@@ -5,6 +5,8 @@ import react from '@vitejs/plugin-react'
 const API_TARGET = process.env.VITE_API_TARGET || 'http://localhost:8000'
 
 export default defineConfig({
+  // '/' locally; '/<repo-name>/' on GitHub Pages (set by the deploy workflow)
+  base: process.env.VITE_BASE || '/',
   plugins: [react()],
   server: {
     port: 5173,
