@@ -117,8 +117,13 @@ class Measure(TimestampMixin, Base):
     policy_reference: Mapped[str | None] = mapped_column(String(120))
     marked_by_id: Mapped[int | None] = mapped_column(ForeignKey("users.id"))
     marked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # follow-up after the incident was closed: the original reason is kept
+    completion_note: Mapped[str | None] = mapped_column(Text)
+    completed_by_id: Mapped[int | None] = mapped_column(ForeignKey("users.id"))
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
     incident: Mapped[Incident] = relationship(back_populates="measures")
+    completed_by: Mapped[User | None] = relationship(foreign_keys=[completed_by_id])
 
 
 class PolicyDocument(TimestampMixin, Base):

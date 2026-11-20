@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-    database_url: str = "postgresql+psycopg://skyshield:skyshield@localhost:5432/skyshield"
+    database_url: str = "postgresql+psycopg://skyshield:skyshield@localhost:5433/skyshield"
 
     jwt_secret: str = "change-me-in-env"
     jwt_algorithm: str = "HS256"

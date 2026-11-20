@@ -6,9 +6,15 @@ from app.core.deps import admin_only, get_current_user
 from app.core.security import hash_password
 from app.core.taxonomy import IncidentStatus, Role
 from app.database import consistent_read, get_db
-from app.models import Incident, User
+from app.models import Incident, Measure, User
 from app.schemas import (
-    AdminIncidentDetail, AdminIncidentPage, ColourName, PasswordReset, UserCreate, UserOut, UserUpdate,
+    AdminIncidentDetail,
+    AdminIncidentPage,
+    ColourName,
+    PasswordReset,
+    UserCreate,
+    UserOut,
+    UserUpdate,
 )
 from app.services.serialize import admin_detail, admin_item, colour_subquery
 
@@ -21,12 +27,16 @@ def admin_incidents(
     colour: ColourName | None = None,
     status_: IncidentStatus | None = Query(None, alias="status"),
     category: str | None = None,
+    completed_late: bool = Query(False, description="Only incidents with a measure completed after closing"),
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
 ):
     consistent_read(db)
     cs = colour_subquery()
+    late_ids = select(Measure.incident_id).where(Measure.completed_at.is_not(None))
     base = select(Incident).join(cs, cs.c.incident_id == Incident.id)
+    if completed_late:
+        base = base.where(Incident.id.in_(late_ids))
     if status_:
         base = base.where(Incident.status == status_)
     if category:
@@ -45,6 +55,7 @@ def admin_incidents(
     ).all()
     colour_totals = {c: 0 for c in ("red", "yellow", "green", "grey")}
     colour_totals.update({c: n for c, n in totals_rows})
+    late_total = db.scalar(select(func.count()).select_from(Incident).where(Incident.id.in_(late_ids), *filters)) or 0
 
     stmt = base.where(cs.c.colour == colour) if colour else base
     total = db.scalar(select(func.count()).select_from(stmt.subquery()))
@@ -55,15 +66,16 @@ def admin_incidents(
         .order_by(order, Incident.occurred_at.desc())
         .offset((page - 1) * page_size).limit(page_size)
     ).all()
-    return AdminIncidentPage(total=total, page=page, page_size=page_size,
-                             items=[admin_item(i) for i in rows], colour_totals=colour_totals)
+    return AdminIncidentPage(total=total, page=page, page_size=page_size, items=[admin_item(i) for i in rows],
+                             colour_totals=colour_totals, completed_late_total=late_total)
 
 
 @router.get("/incidents/{incident_id}", response_model=AdminIncidentDetail)
 def admin_incident(incident_id: int, db: Session = Depends(get_db)):
     consistent_read(db)
     i = db.scalar(select(Incident).where(Incident.id == incident_id)
-                  .options(selectinload(Incident.measures), selectinload(Incident.summaries)))
+                  .options(selectinload(Incident.measures).selectinload(Measure.completed_by),
+                           selectinload(Incident.summaries)))
     if i is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Incident not found")
     return admin_detail(i)

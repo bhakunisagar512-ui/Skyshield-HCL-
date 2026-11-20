@@ -6,7 +6,7 @@ services:
       POSTGRES_PASSWORD: skyshield
       POSTGRES_DB: skyshield
     ports:
-      - "5433:5432"
+      - "5433:5432"   # 5433 on your machine, so it never clashes with a locally installed PostgreSQL
     volumes:
       - skyshield_pg:/var/lib/postgresql/data
       - ./database/init-test-db.sql:/docker-entrypoint-initdb.d/init-test-db.sql:ro
