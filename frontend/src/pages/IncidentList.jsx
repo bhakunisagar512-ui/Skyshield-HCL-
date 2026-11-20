@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { api } from '../api'
 import { useAuth } from '../auth'
-import { ColourPill, ErrorAlert, Pagination, SeverityBadge, Spinner, StatusBadge } from '../components/ui'
-import { formatDate, useTaxonomy } from '../taxonomy'
+import { ColourPill, DateFilter, ErrorAlert, Pagination, SeverityBadge, Spinner, StatusBadge } from '../components/ui'
+import { dayRange, formatDate, formatDay, useTaxonomy } from '../taxonomy'
 
 const STATUS_TABS = [
   ['', 'All'],
@@ -23,7 +23,11 @@ export default function IncidentList() {
   const [search, setSearch] = useState(params.get('q') || '')
   const isReporter = user.role === 'reporter'
 
+  const day = params.get('date') || ''
+  const [dateFrom, dateTo] = dayRange(day)
   const query = {
+    date_from: dateFrom,
+    date_to: dateTo,
     status: params.get('status') || '',
     category: params.get('category') || '',
     colour: params.get('colour') || '',
@@ -74,6 +78,7 @@ export default function IncidentList() {
             <option value="">All categories</option>
             {tax?.categories?.map((c) => <option key={c.code} value={c.code}>{c.label}</option>)}
           </select>
+          <DateFilter value={day} onChange={(v) => update({ date: v })} />
           {!isReporter && (
             <select className="form-select w-auto" value={query.colour} aria-label="Colour"
                     onChange={(e) => update({ colour: e.target.value })}>
@@ -88,9 +93,16 @@ export default function IncidentList() {
       </div>
 
       <ErrorAlert error={error} />
+      {day && data && (
+        <div className="small mb-2">
+          <i className="bi bi-calendar-event me-1" aria-hidden="true" />
+          <strong>{data.total}</strong> incident{data.total === 1 ? '' : 's'} on <strong>{formatDay(day)}</strong>
+          <button className="btn btn-link btn-sm py-0" onClick={() => update({ date: '' })}>Show all dates</button>
+        </div>
+      )}
       {!data ? <Spinner /> : data.items.length === 0 ? (
         <div className="card"><div className="card-body text-center muted py-5">
-          {isReporter && !query.status && !query.q ? 'You have not filed any reports yet.' : 'No incidents match these filters.'}
+          {day ? `No incidents on ${formatDay(day)}${query.status || query.category || query.colour || query.q ? ' with these filters' : ''}.` : isReporter && !query.status && !query.q ? 'You have not filed any reports yet.' : 'No incidents match these filters.'}
         </div></div>
       ) : (
         <div className="card">
@@ -106,7 +118,7 @@ export default function IncidentList() {
                 {data.items.map((i) => (
                   <tr key={i.id} onClick={() => navigate(`/incidents/${i.id}`)}>
                     <td className="text-nowrap"><Link to={`/incidents/${i.id}`} onClick={(e) => e.stopPropagation()}>{i.reference}</Link></td>
-                    <td>{i.title}</td>
+                    <td className="text-break" style={{ minWidth: 220, maxWidth: 420 }}>{i.title}</td>
                     <td className="small">{categoryLabel(i.category)}</td>
                     <td className="small text-nowrap">{airportLabel(i.airport_code)}</td>
                     <td className="small text-nowrap">{formatDate(i.occurred_at, false)}</td>

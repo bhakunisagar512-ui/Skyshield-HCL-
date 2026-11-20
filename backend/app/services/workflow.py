@@ -89,3 +89,11 @@ def check_can_close(incident: Incident) -> None:
     problems = close_blockers(incident.measures, latest.status if latest else None)
     if problems:
         raise HTTPException(status.HTTP_409_CONFLICT, " ".join(problems))
+
+
+def check_date_range(date_from: datetime | None, date_to: datetime | None) -> None:
+    for d in (date_from, date_to):
+        if d is not None and d.tzinfo is None:
+            raise HTTPException(422, "Dates must include a timezone")
+    if date_from and date_to and date_from > date_to:
+        raise HTTPException(422, "date_from must be before date_to")

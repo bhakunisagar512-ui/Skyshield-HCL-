@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session, selectinload
@@ -17,6 +19,7 @@ from app.schemas import (
     UserUpdate,
 )
 from app.services.serialize import admin_detail, admin_item, colour_subquery
+from app.services.workflow import check_date_range
 
 router = APIRouter(prefix="/admin", tags=["admin"], dependencies=[Depends(admin_only)])
 
@@ -28,25 +31,31 @@ def admin_incidents(
     status_: IncidentStatus | None = Query(None, alias="status"),
     category: str | None = None,
     completed_late: bool = Query(False, description="Only incidents with a measure completed after closing"),
+    date_from: datetime | None = Query(None, description="Occurred at or after (ISO 8601 with timezone)"),
+    date_to: datetime | None = Query(None, description="Occurred at or before (ISO 8601 with timezone)"),
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
 ):
+    check_date_range(date_from, date_to)
     consistent_read(db)
     cs = colour_subquery()
     late_ids = select(Measure.incident_id).where(Measure.completed_at.is_not(None))
-    base = select(Incident).join(cs, cs.c.incident_id == Incident.id)
-    if completed_late:
-        base = base.where(Incident.id.in_(late_ids))
-    if status_:
-        base = base.where(Incident.status == status_)
-    if category:
-        base = base.where(Incident.category == category)
 
+    # filters shared by the list, the colour totals and the late-fix total
     filters = []
     if status_:
         filters.append(Incident.status == status_)
     if category:
         filters.append(Incident.category == category)
+    if date_from:
+        filters.append(Incident.occurred_at >= date_from)
+    if date_to:
+        filters.append(Incident.occurred_at <= date_to)
+
+    base = select(Incident).join(cs, cs.c.incident_id == Incident.id).where(*filters)
+    if completed_late:
+        base = base.where(Incident.id.in_(late_ids))
+
     totals_rows = db.execute(
         select(cs.c.colour, func.count())
         .join(Incident, Incident.id == cs.c.incident_id)

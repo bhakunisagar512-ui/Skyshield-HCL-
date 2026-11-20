@@ -32,3 +32,25 @@ export function formatDate(iso, withTime = true) {
     ...(withTime ? { hour: '2-digit', minute: '2-digit' } : {}),
   })
 }
+
+/* "2026-11-10" -> [start, end] of that day in the user's local time, as ISO strings */
+export function dayRange(day) {
+  if (!day) return [undefined, undefined]
+  const [y, m, d] = day.split('-').map(Number)
+  const start = new Date(y, m - 1, d, 0, 0, 0, 0)
+  const end = new Date(y, m - 1, d, 23, 59, 59, 999)
+  return [start.toISOString(), end.toISOString()]
+}
+
+export function todayLocal() {
+  const d = new Date()
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset())
+  return d.toISOString().slice(0, 10)
+}
+
+export function formatDay(day) {
+  if (!day) return ''
+  const [y, m, d] = day.split('-').map(Number)
+  const date = new Date(y, m - 1, d)
+  return `${date.toLocaleDateString('en-IN', { weekday: 'short' })} ${date.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}`
+}

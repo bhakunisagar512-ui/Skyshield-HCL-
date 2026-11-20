@@ -58,7 +58,7 @@ export default function IncidentDetail() {
       <div className="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
         <div>
           <div className="muted small">{incident.reference}</div>
-          <h1 className="page-title">{incident.title}</h1>
+          <h1 className="page-title text-break">{incident.title}</h1>
         </div>
         <div className="d-flex gap-2 align-items-center">
           <SeverityBadge severity={incident.severity} />

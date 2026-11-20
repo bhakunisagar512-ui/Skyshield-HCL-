@@ -1,4 +1,4 @@
-import { humanize } from '../taxonomy'
+import { humanize, todayLocal } from '../taxonomy'
 
 const COLOUR_TEXT = {
   green: 'All measures applied',
@@ -98,6 +98,21 @@ export function Field({ label, error, children, hint }) {
       {children}
       {hint && !error && <div className="form-text">{hint}</div>}
       {error && <div className="invalid-feedback d-block">{error}</div>}
+    </div>
+  )
+}
+
+export function DateFilter({ value, onChange }) {
+  return (
+    <div className="input-group w-auto flex-nowrap">
+      <span className="input-group-text bg-white small"><i className="bi bi-calendar3 me-1" aria-hidden="true" />Occurred on</span>
+      <input type="date" className="form-control" style={{ maxWidth: 170 }} value={value} max={todayLocal()}
+             aria-label="Occurred on date" onChange={(e) => onChange(e.target.value)} />
+      {value && (
+        <button type="button" className="btn btn-outline-secondary" onClick={() => onChange('')} title="Clear date">
+          <i className="bi bi-x-lg" aria-hidden="true" /><span className="visually-hidden">Clear date</span>
+        </button>
+      )}
     </div>
   )
 }

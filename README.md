@@ -24,7 +24,7 @@ Report → Review & analyse → AI summary + measures → Mark measures → Clos
 | Authentication | JWT (PyJWT), bcrypt password hashing, role-based access |
 | AI | Anthropic Claude Haiku (`claude-haiku-5-5`) through a forced tool call; retrieval with pgvector |
 | Background work | FastAPI BackgroundTasks |
-| Testing | pytest (83 tests), an AI evaluation script (32 cases), an end-to-end smoke test |
+| Testing | pytest (88 tests), an AI evaluation script (32 cases), an end-to-end smoke test |
 | Tools | Git + GitHub, Docker Desktop, VS Code |
 
 ## Architecture
@@ -65,7 +65,7 @@ Skyshield/
 │   ├── scripts/
 │   │   ├── smoke_test.py        end-to-end check against a running server, including the AI
 │   │   └── evaluate_ai.py       retrieval and generation metrics on the evaluation set
-│   ├── tests/                   83 pytest tests
+│   ├── tests/                   88 pytest tests
 │   ├── requirements.txt, pytest.ini, alembic.ini
 │   └── .env.example             copy to .env (never commit .env)
 ├── frontend/
@@ -111,7 +111,7 @@ Open `backend\.env` and set `JWT_SECRET` to a long random value. You can generat
 ```powershell
 alembic upgrade head
 python -m app.seed --reset        # expect: 17 policies, 16 users, 185 incidents, 1245 measures
-python -m pytest -q               # expect: 83 passed
+python -m pytest -q               # expect: 88 passed
 ```
 
 **3. Turn on the real AI (optional).** The default is an offline mock, which needs no key. To use Claude, set these in `backend\.env`:
@@ -157,9 +157,9 @@ There is no self sign-up: the admin creates accounts under **Users**.
 
 ## What each role can do
 
-- **Reporter:** files a report (with validation), sees "My reports" and each report's status and history. Reporters do not see measures or AI output.
-- **Safety Officer:** works the incident queue (status tabs, search, category and colour filters). On an incident: **start review**, then severity and **analysis**, then the **AI draft**, which can be approved, edited, discarded or regenerated and updates on its own while generating. Then the **measures checklist**: Applied, or Not applied with a required reason; click MUST/SHOULD to change priority; add your own measures. Finally **close** the incident, with a preview of the colour it will close as. **After closing**, any Safety Officer can mark a measure that was not applied as **completed** (with a required note), for example when a part arrives weeks later. The incident stays closed, its colour updates, the original reason is kept, and the follow-up appears in the history. Also has the dashboard and the policy library.
-- **Admin:** has the **safety overview**, with red / yellow / in-progress / green counts as filters and red first; each incident shows its short summary and ✅ ⚠️ ❌ counts. A **Completed after closing** switch shows incidents with late fixes. The incident view shows the issue, summary, suggested measures, applied measures (late fixes show the note, who and when) and not-applied measures with reasons. Also has the **dashboard**, the **policy library** (with a search showing which sections the AI would use), and **user management**: add users, change roles, reset passwords, deactivate or reactivate. Users are never deleted, so the audit trail stays complete. An admin can't deactivate or demote themselves, and the last active admin can't be removed.
+- **Reporter:** files a report (with validation), sees "My reports" (which can also be filtered by date) and each report's status and history. Reporters do not see measures or AI output.
+- **Safety Officer:** works the incident queue (status tabs, search, category and colour filters, and an **Occurred on** date picker that shows every incident from one day). On an incident: **start review**, then severity and **analysis**, then the **AI draft**, which can be approved, edited, discarded or regenerated and updates on its own while generating. Then the **measures checklist**: Applied, or Not applied with a required reason; click MUST/SHOULD to change priority; add your own measures. Finally **close** the incident, with a preview of the colour it will close as. **After closing**, any Safety Officer can mark a measure that was not applied as **completed** (with a required note), for example when a part arrives weeks later. The incident stays closed, its colour updates, the original reason is kept, and the follow-up appears in the history. Also has the dashboard and the policy library.
+- **Admin:** has the **safety overview**, with red / yellow / in-progress / green counts as filters and red first; each incident shows its short summary and ✅ ⚠️ ❌ counts. An **Occurred on** date picker shows one day's incidents, and the colour counts follow it. A **Completed after closing** switch shows incidents with late fixes. The incident view shows the issue, summary, suggested measures, applied measures (late fixes show the note, who and when) and not-applied measures with reasons. Also has the **dashboard**, the **policy library** (with a search showing which sections the AI would use), and **user management**: add users, change roles, reset passwords, deactivate or reactivate. Users are never deleted, so the audit trail stays complete. An admin can't deactivate or demote themselves, and the last active admin can't be removed.
 
 ## Rules the system enforces
 
@@ -193,11 +193,13 @@ There is no self sign-up: the admin creates accounts under **Users**.
 | PATCH | `/api/measures/{id}` (status, reason, priority) | officer |
 | POST | `/api/measures/{id}/complete` (note; closed incidents, not-applied measures only) | any officer |
 | POST | `/api/incidents/{id}/close` | officer |
-| GET | `/api/admin/incidents` (red first, colour totals, `completed_late` filter) · `/api/admin/incidents/{id}` | admin |
+| GET | `/api/admin/incidents` (red first, colour totals; filters: colour, status, category, `completed_late`, `date_from`, `date_to`) · `/api/admin/incidents/{id}` | admin |
 | GET/POST | `/api/admin/users` · PATCH `/api/admin/users/{id}` · POST `/api/admin/users/{id}/reset-password` | admin |
 | GET | `/api/dashboard/stats` | officer, admin |
 | GET | `/api/policies` · `/api/policies/search?q=` · POST `/api/policies` (admin) | officer, admin |
 | GET | `/api/meta/taxonomy` · `/api/health` | public |
+
+**Date filters** (`date_from`, `date_to`) are ISO 8601 times **with a timezone**, compared with when the incident occurred. The frontend sends the start and end of the chosen day in the user's local time, so an incident at 00:30 IST on 10 Nov counts as 10 Nov.
 
 The AI summary is generated in the background after `/analysis`. The frontend polls `GET /incidents/{id}` while `summary.status` is `"generating"`.
 
@@ -215,11 +217,11 @@ The AI summary is generated in the background after `/analysis`. The frontend po
 
 ```powershell
 cd backend
-python -m pytest -q                                   # 83 tests, uses the skyshield_test database
+python -m pytest -q                                   # 88 tests, uses the skyshield_test database
 python -m scripts.evaluate_ai --provider anthropic    # AI metrics on 32 hand-written incidents
 ```
 
-The tests cover every colour combination and that the SQL colour filter matches the Python rule; every role permission; invalid transitions and validation errors; the full workflow to yellow and to red; completing a measure after closing (any officer, note required, colour updates, original reason kept, admins refused); user management (deactivation blocks sign-in and existing tokens, role changes apply at once, admin lock-out protection, password reset); and the AI layer, using fake API responses so no key is needed: structured output, the validation retry, HTTP retry and backoff, the grounding check, safe failure and recovery of a stuck generation.
+The tests cover every colour combination and that the SQL colour filter matches the Python rule; every role permission; invalid transitions and validation errors; the full workflow to yellow and to red; completing a measure after closing (any officer, note required, colour updates, original reason kept, admins refused); filtering by date (local-time day boundaries, both lists, colour totals, invalid ranges rejected); user management (deactivation blocks sign-in and existing tokens, role changes apply at once, admin lock-out protection, password reset); and the AI layer, using fake API responses so no key is needed: structured output, the validation retry, HTTP retry and backoff, the grounding check, safe failure and recovery of a stuck generation.
 
 **Evaluation results** (32 hand-written incidents, deliberately worded differently from the dataset):
 

@@ -28,7 +28,7 @@ def upload_policy(body: PolicyIn, db: Session = Depends(get_db)):
     try:
         doc = ingest_policy(db, body.content)
     except ValueError as exc:
-        raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, str(exc))
+        raise HTTPException(422, str(exc))
     db.commit()
     return PolicyOut(id=doc.id, code=doc.code, title=doc.title, category=doc.category, source=doc.source,
                      chunk_count=len(doc.chunks))
